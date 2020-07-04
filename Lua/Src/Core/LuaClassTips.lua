@@ -1,0 +1,29 @@
+---@class LuaClass
+---@field App  App   
+---@field AppConfig  AppConfig   
+---@field Debug  Debug   
+---@field GameConfig  GameConfig   
+---@field Main  Main   
+---@field GameObjectComponent  GameObjectComponent   
+---@field ModuleConstant  ModuleConstant   
+---@field UIConstant  UIConstant   
+---@field EventBeat  EventBeat   
+---@field EventDispatcher  EventDispatcher   
+---@field KeyManager  KeyManager   
+---@field PoolManager  PoolManager   
+---@field TimerManager  TimerManager   
+---@field UIManager  UIManager   
+---@field AssetPathUtilEx  AssetPathUtilEx   
+---@field LogUtil  LogUtil   
+---@field StringUntil  StringUntil   
+---@field UIOperateUntil  UIOperateUntil   
+---@field CoreInit  CoreInit   
+---@field CSharpBinding  CSharpBinding   
+---@field Functions  Functions   
+---@field LuaClass  LuaClass   
+---@field LuaClassList  LuaClassList   
+---@field LuaClassTips  LuaClassTips   
+---@field Extension  Extension   
+---@field ExtensionInit  ExtensionInit   
+---@field GameObjectEx  GameObjectEx   
+local LuaClass = {}

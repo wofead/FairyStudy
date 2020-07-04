@@ -12,7 +12,7 @@ namespace FairyStudy
         // 资源路径(Assets/)
         public string assetsPath = "GameAssets";
         /** 资源包输出路径*/
-        public string assetsExportPath = "../../Develop";
+        public string assetsExportPath = "../";
         //AB包导出的先对目录
         public string assetBundleBuildRelPath = "/Bundles";
         // 脚本目录（AssetsExportPath/)
@@ -48,7 +48,7 @@ namespace FairyStudy
             // 资源路径(Assets/)
             assetsPath = "GameAssets";
             /** 资源包输出路径*/
-            assetsExportPath = "../../Develop/Game";
+            assetsExportPath = "../";
             //AB包导出的先对目录
             assetBundleBuildRelPath = assetsExportPath + "/Res";
             // 脚本目录（AssetsExportPath/)

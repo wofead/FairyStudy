@@ -29,10 +29,15 @@ public class Main : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (_luaEnv != null)
+        {
+            _luaEnv.Dispose();
+            _luaEnv = null;
+        }
         _luaEnv = new LuaEnv();
         _luaEnv.AddLoader(Loader);
         _luaEnv.DoString("require 'Main'");
-        
+
     }
 
     // Update is called once per frame
@@ -42,8 +47,8 @@ public class Main : MonoBehaviour
         if (_luaUpdate == null)
         {
             _luaUpdate = _luaEnv.Global.GetInPath<Action<float>>("__G__UPDATE__");
-            _luaUpdate(Time.deltaTime);
         }
+        _luaUpdate(Time.deltaTime);
     }
 
     void FixedUpdate()
@@ -51,8 +56,8 @@ public class Main : MonoBehaviour
         if (_luaFixedUpdate == null)
         {
             _luaFixedUpdate = _luaEnv.Global.GetInPath<Action<float>>("__G__FIXEDUPDATE__");
-            _luaFixedUpdate(Time.fixedDeltaTime);
         }
+        _luaFixedUpdate(Time.fixedDeltaTime);
     }
 
     void LateUpdate()
@@ -60,8 +65,8 @@ public class Main : MonoBehaviour
         if (_luaLateUpdate == null)
         {
             _luaLateUpdate = _luaEnv.Global.GetInPath<Action>("__G__LATEUPDATE__");
-            _luaLateUpdate();
         }
+        _luaLateUpdate();
     }
 
     void OnApplicationQuit()
@@ -70,12 +75,18 @@ public class Main : MonoBehaviour
         {
             _quit = _luaEnv.Global.GetInPath<Action>("__G__QUIT__");
             _quit();
+            _luaEnv.DoString("print('before Dispose')");
+            _luaEnv.Dispose();
         }
     }
 
     byte[] Loader(ref string filePath)
     {
-        string srcFullPath = Path.GetFullPath("../Src");
+        if (filePath == "emmy_core")
+        {
+            return null;
+        }
+        string srcFullPath = Path.GetFullPath("../Lua/Src");
         string targetFilePath = string.Format("{0}/{1}", srcFullPath, filePath).Replace('.', '/') + ".lua";
         if (File.Exists(targetFilePath))
         {

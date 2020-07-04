@@ -1,13 +1,13 @@
 {
   "doc.openedDocs": [],
-  "libview.firstColumnWidth": 283,
-  "auxline1": true,
   "libview.iconScale": 0,
-  "backgroundColor": 6710886,
-  "libview.currentGroup": "",
-  "canvasColor": 10066329,
-  "auxline2": true,
+  "auxline1": true,
   "libview.twoColumn": false,
+  "libview.currentGroup": "",
+  "libview.firstColumnWidth": 283,
+  "auxline2": true,
+  "backgroundColor": 6710886,
+  "canvasColor": 10066329,
   "libview.expandedNodes": [
     "9leh0eyf",
     "/"
