@@ -23,6 +23,7 @@ function GameObjectComponent:add(module, ...)
     end
     local component = module(self.gameObject)
     table.insert(self.components, component)
+    return component
 end
 
 function GameObjectComponent:get(module)

@@ -12,7 +12,7 @@ local function ex(t, ctype)
         mt[k] = v
     end
     mt.__index = function(o, k)
-        if m[k] then
+        if mt[k] then
             return mt[k]
         elseif mt[o] and mt[o][k] then
             return mt[o][k]
@@ -20,18 +20,18 @@ local function ex(t, ctype)
             return meta.__index(o, k)
         end
     end
-    if ctype == LuaClass.GameObject then
-        mt__newindex = function(o,k,v)
+     if ctype == CS.UnityEngine.GameObject then
+        mt.__newindex = function(o,k,v)
             if mt[o] == nil then
                 mt[o] = {}
                 mt[o][k] = v
                 o:addLuaComponent()
-                xlua.setmetatable(ctype, mt)
             else
                 mt[o][k] = v
             end
         end
-    end
+     end
+    xlua.setmetatable(ctype, mt)
     return mt
 end
 setmetatable(Extension, {__call = ex})

@@ -19,6 +19,12 @@ function App:init()
     self.autoReleaseObjects = {}
 
     self.mainCamera = LuaClass.GameObject.Find("Main Camera"):GetComponent(typeof(LuaClass.Camera))
+
+    self:initManager()
+
+    self:initModule()
+
+    self:gameStart()
 end
 
 function App:autoRelease(gameObject)
@@ -59,8 +65,25 @@ end
 
 function App:initManager()
     ---@type EventDispatcher
-    self.GlobalEventDispatcher = LuaClass.EventDispatcher()
+    self.globalEventDispatcher = LuaClass.EventDispatcher()
+    ---@type UiManager
+    self.uiManager = LuaClass.UiManager()
+    ---@type KeyManager
+    self.keyManager = LuaClass.KeyManager()
+end
 
+function App:initModule()
+    ---@type MainModule
+    self.mainModule = LuaClass.MainModule()
+    ---@type BasicsModule
+    self.basicsModule = LuaClass.BasicsModule()
+    ---@type BagModule
+    self.bagModule = LuaClass.BagModule()
+end
+
+function App:gameStart()
+    ---@type GameStart
+    local gameStart = LuaClass.GameStart:NewGameObject()
 end
 
 function App:quit()

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<packageDescription id="zmgj1gj3">
+  <resources>
+    <component id="ir6a0" name="Main.xml" path="/" exported="true"/>
+    <image id="ir6a1" name="b4.png" path="/Images/" scale="9grid" scale9grid="40,17,80,34"/>
+    <image id="ir6a2" name="b5.png" path="/Images/" scale="9grid" scale9grid="40,17,80,34"/>
+    <component id="ir6a3" name="BtnCommon.xml" path="/"/>
+  </resources>
+  <publish name=""/>
+</packageDescription>

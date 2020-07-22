@@ -4,8 +4,22 @@
 
 
 ---@class ModuleConstant
-local ModuleConstant = {}
-ModuleConstant.MAIN = {moduleName = "Main"}
+local ModuleConstant = {
+    moduleName = ""
+}
+
+
+ModuleConstant.Main = {
+    moduleName = "mainModule",
+}
+ModuleConstant.Bag = {
+    moduleName = "bagModule"
+}
+ModuleConstant.Basics = {
+    moduleName = "basicsModule"
+
+}
+
 
 --- 模块数据请求
 ModuleConstant.Data = {

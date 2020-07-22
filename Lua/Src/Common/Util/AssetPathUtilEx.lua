@@ -15,14 +15,15 @@ function AssetPathUtilEx.getNormalizeUrl(packageConf, resName)
 end
 
 ---装载器设置url方法
----@param pkgCfg table @包的配置
+---@param packageConf table @包的配置
 ---@param resName string @资源在包下面的路径
 function AssetPathUtilEx.getGLoaderURL(packageConf, resName)
     return string.format("ui://%s//%s", packageConf.moduleName, resName)
 end
 
-function AssetPathUtilEx.getPackageUrl(packageConf)
-    return string.format("GameAssets/UI/Module/%s/%s", packageConf.moduleName, packageConf.moduleName)
+---@param packageName string
+function AssetPathUtilEx.getPackageUrl(packageName)
+    return string.format("Assets/GameAssets/UI/%s", packageName)
 end
 
 return AssetPathUtilEx

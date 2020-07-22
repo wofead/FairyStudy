@@ -75,8 +75,6 @@ public class Main : MonoBehaviour
         {
             _quit = _luaEnv.Global.GetInPath<Action>("__G__QUIT__");
             _quit();
-            _luaEnv.DoString("print('before Dispose')");
-            _luaEnv.Dispose();
         }
     }
 

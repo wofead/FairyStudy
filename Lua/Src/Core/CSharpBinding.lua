@@ -5,44 +5,83 @@
 ---
 
 --FairyGUI
+---@type FairyGUI.EventContext
 LuaClass.GuiEventContext = CS.FairyGUI.EventContext
+---@type FairyGUI.EventListener
 LuaClass.GuiEventListener = CS.FairyGUI.EventListener
+---@type FairyGUI.EventDispatcher
 LuaClass.GuiEventDispatcher = CS.FairyGUI.EventDispatcher
+---@type FairyGUI.InputEvent
 LuaClass.GuiInputEvent = CS.FairyGUI.InputEvent
+---@type FairyGUI.NTexture
 LuaClass.GuiNTexture = CS.FairyGUI.NTexture
+---@type FairyGUI.Container
 LuaClass.GuiContainer = CS.FairyGUI.Container
+---@type FairyGUI.Image
 LuaClass.GuiImage = CS.FairyGUI.Image
+---@type FairyGUI.Stage
 LuaClass.GuiStage = CS.FairyGUI.Stage
+---@type FairyGUI.Controller
 LuaClass.GuiController = CS.FairyGUI.Controller
+---@type FairyGUI.GObject
 LuaClass.GuiGObject = CS.FairyGUI.GObject
+---@type FairyGUI.GGraph
 LuaClass.GuiGGraph = CS.FairyGUI.GGraph
+---@type FairyGUI.GGroup
 LuaClass.GuiGGroup = CS.FairyGUI.GGroup
+---@type FairyGUI.GImage
 LuaClass.GuiGImage = CS.FairyGUI.GImage
+---@type FairyGUI.GLoader
 LuaClass.GuiGLoader = CS.FairyGUI.GLoader
+---@type FairyGUI.GMovieClip
 LuaClass.GuiGMovieClip = CS.FairyGUI.GMovieClip
+---@type FairyGUI.TextFormat
 LuaClass.GuiTextFormat = CS.FairyGUI.TextFormat
+---@type FairyGUI.GTextField
 LuaClass.GuiGTextField = CS.FairyGUI.GTextField
+---@type FairyGUI.GRichTextField
 LuaClass.GuiGRichTextField = CS.FairyGUI.GRichTextField
+---@type FairyGUI.GTextInput
 LuaClass.GuiGTextInput = CS.FairyGUI.GTextInput
+---@type FairyGUI.GComponent
 LuaClass.GuiGComponent = CS.FairyGUI.GComponent
+---@type FairyGUI.GList
 LuaClass.GuiGList = CS.FairyGUI.GList
+---@type FairyGUI.GRoot
 LuaClass.GuiGRoot = CS.FairyGUI.GRoot
+---@type FairyGUI.GLabel
 LuaClass.GuiGLabel = CS.FairyGUI.GLabel
+---@type FairyGUI.GButton
 LuaClass.GuiGButton = CS.FairyGUI.GButton
+---@type FairyGUI.GComboBox
 LuaClass.GuiGComboBox = CS.FairyGUI.GComboBox
+---@type FairyGUI.GProgressBar
 LuaClass.GuiGProgressBar = CS.FairyGUI.GProgressBar
+---@type FairyGUI.GSlider
 LuaClass.GuiGSlider = CS.FairyGUI.GSlider
+---@type FairyGUI.PopupMenu
 LuaClass.GuiPopupMenu = CS.FairyGUI.PopupMenu
+---@type FairyGUI.ScrollPane
 LuaClass.GuiScrollPane = CS.FairyGUI.ScrollPane
+---@type FairyGUI.Transition
 LuaClass.GuiTransition = CS.FairyGUI.Transition
+---@type FairyGUI.UIPackage
 LuaClass.GuiUIPackage = CS.FairyGUI.UIPackage
+---@type FairyGUI.Window
 LuaClass.GuiWindow = CS.FairyGUI.Window
+---@type FairyGUI.GObjectPool
 LuaClass.GuiGObjectPool = CS.FairyGUI.GObjectPool
+---@type FairyGUI.Relations
 LuaClass.GuiRelations = CS.FairyGUI.Relations
 LuaClass.GuiRelationType = CS.FairyGUI.RelationType
+---@type FairyGUI.UIPanel
 LuaClass.GuiUIPanel = CS.FairyGUI.UIPanel
+---@type FairyGUI.UIPainter
 LuaClass.GuiUIPainter = CS.FairyGUI.UIPainter
+---@type FairyGUI.TypingEffect
 LuaClass.GuiTypingEffect = CS.FairyGUI.TypingEffect
+---@type FairyGUI.UIConfig
+LuaClass.GuiUIConfig = CS.FairyGUI.UIConfig
 
 --Unity
 --- @type UnityEngine.Vector2

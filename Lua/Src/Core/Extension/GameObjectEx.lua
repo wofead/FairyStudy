@@ -41,4 +41,23 @@ function GameObjectEx:release()
     end
 end
 
+---获取引用计数
+function GameObjectEx:getUseReflectNum()
+    return self.useReflectNum or 0
+end
+
+-- 获得一个Lua组件
+function GameObjectEx:getLuaComponent(module)
+    if self.luaComponent then
+        return self.luaComponent:get(module)
+    end
+end
+
+-- 移除一个Lua组件
+function GameObjectEx:removeLuaComponent(module)
+    if self.luaComponent then
+        return self.luaComponent:remove(module)
+    end
+end
+
 return GameObjectEx

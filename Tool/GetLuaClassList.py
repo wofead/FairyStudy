@@ -2,7 +2,7 @@
 import os,sys
 
 root_path = os.path.dirname(os.path.dirname(os.path.realpath(sys.argv[0])))
-root_path = os.path.join(root_path, "./Src")
+root_path = os.path.join(root_path, "./Lua/Src")
 print(root_path)
 checkDir = {}
 
