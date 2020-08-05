@@ -26,6 +26,10 @@
   ],
   "libview.iconScale": 0,
   "auxline1": true,
+  "doc.activeDoc": "ui://zmgj1gj3ir6a0",
+  "backgroundColor": 6710886,
+  "libview.twoColumn": false,
+  "libview.currentGroup": "",
   "libview.expandedNodes": [
     "d8m5tmok",
     "/",
@@ -36,13 +40,11 @@
     "ddm193o7",
     "/",
     "t7096b8q",
+    "/",
+    "zmgj1gj3",
     "/"
   ],
-  "doc.activeDoc": "ui://y768eypffvaib",
-  "libview.currentGroup": "",
-  "canvasColor": 10066329,
   "auxline2": true,
-  "backgroundColor": 6710886,
-  "libview.twoColumn": false,
+  "canvasColor": 10066329,
   "libview.firstColumnWidth": 357
 }

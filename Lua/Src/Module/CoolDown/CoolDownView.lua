@@ -15,11 +15,34 @@ local eventDispatcher = module.eventDispatcher
 CoolDownView.uiConfig = LuaClass.UiConstant.CoolDown
 
 function CoolDownView:init()
+    local ui = self.ui
+    ui.b0.icon = "Cooldown/k0"
+    ui.b1.icon = "Cooldown/k1"
+    self.mask1 = ui.b0:GetChild("mask")
+    self.mask2 = ui.b1:GetChild("mask")
 end
 
 function CoolDownView:onEnter()
+    self.time = App.timeManager:add(20, handler(self, self.update), -1)
+    self.time1 = 5000
+    self.time2 = 10000
     super.onEnter(self)
     self:registerEvent()
+end
+
+function CoolDownView:update()
+    local ui = self.ui
+    self.time1 = self.time1 - 20
+    if self.time1 < 0 then
+        self.time1 = 5000
+    end
+    self.mask1.fillAmount = 1 - (5 - self.time1 / 1000) / 5
+    self.time2 = self.time2 - 20
+    if self.time2 < 0 then
+        self.time2 = 10000
+    end
+    ui.b1.text = "" .. math.ceil(self.time2 / 1000)
+    self.mask2.fillAmount = 1 - (10000 - self.time2 / 1000) / 10000
 end
 
 function CoolDownView:registerEvent()
@@ -34,6 +57,9 @@ function CoolDownView:unRegisterEvent()
 end
 
 function CoolDownView:closeView()
+    if self.time then
+        App.timeManager:remove(self.time)
+    end
     module:closeView()
 end
 
@@ -44,6 +70,5 @@ end
 function CoolDownView:dispose()
     super.dispose(self)
 end
-
 
 return CoolDownView

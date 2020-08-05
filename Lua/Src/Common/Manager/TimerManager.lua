@@ -26,12 +26,13 @@ function TimerManager:update(dt)
             self.timeFuncCache[i] = nil
         elseif v[5] >= v[6] * v[1] then
             v[6] = v[6] +1
-            v[2]()
+            v[2](dt)
         end
         v[5] = v[5] + dt
     end
 end
 
+---@param internal number@毫秒
 function TimerManager:add(internal, func, endTime, endFunc)
     self.timeIndex = self.timeIndex + 1
     self.timeFuncCache[self.timeIndex] = { internal, func, endTime, endFunc, 0, 0 }
