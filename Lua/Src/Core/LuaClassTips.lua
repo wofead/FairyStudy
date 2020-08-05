@@ -35,6 +35,11 @@
 ---@field BagView  BagView   
 ---@field BasicsModule  BasicsModule   
 ---@field BasicsView  BasicsView   
+---@field BundleUsageModule  BundleUsageModule   
+---@field BundleUsageView  BundleUsageView   
 ---@field MainModule  MainModule   
 ---@field MainView  MainView   
+---@field BagWindow  BagWindow   
+---@field WindowsA  WindowsA   
+---@field WindowsB  WindowsB   
 local LuaClass = {}

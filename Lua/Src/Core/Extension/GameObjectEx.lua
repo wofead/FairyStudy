@@ -2,7 +2,7 @@
 ---DATE：    2020/6/27
 ---DES:      对gameObject的扩张
 
----@class GameObject
+---@type GameObject
 local GameObjectEx = LuaClass.Extension(LuaClass.GameObject)
 
 function GameObjectEx:addLuaComponent(module, ...)

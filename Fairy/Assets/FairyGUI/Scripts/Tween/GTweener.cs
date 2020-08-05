@@ -306,6 +306,12 @@ namespace FairyGUI
             return this;
         }
 
+        public GTweener OnUpdateForce(GTweenCallback1 callback)
+        {
+            _onUpdate1 = callback;
+            return this;
+        }
+
         /// <summary>
         /// 
         /// </summary>

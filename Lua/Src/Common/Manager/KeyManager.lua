@@ -7,12 +7,17 @@ local super = nil
 ---@class KeyManager
 local KeyManager = class("KeyManager", super)
 
+function KeyManager:ctor()
+    self:init()
+end
+
 function KeyManager:init()
     ---@type table<number,EventBeat>
     self.pressBeatList = {}
     ---@type table<number,EventBeat>
     self.releaseBeatList = {}
     self:defaultKeyList()
+    App:addEnterFrameHandler(handler(self, self.update))
 end
 
 function KeyManager:update(dt)
@@ -29,19 +34,19 @@ function KeyManager:update(dt)
     end
 end
 
-function KeyManager:registerPressHandler(code, handler)
+function KeyManager:registerPressHandler(code, codeString, handler)
     local eventBeat = self.pressBeatList[code]
     if not isValid(eventBeat) then
-        eventBeat = LuaClass.EventBeat("KeyPress" .. code)
+        eventBeat = LuaClass.EventBeat("KeyPress" .. codeString)
         self.pressBeatList[code] = eventBeat
     end
     eventBeat:add(handler)
 end
 
-function KeyManager:registerReleaseHandler(code, handler)
+function KeyManager:registerReleaseHandler(code, codeString, handler)
     local eventBeat = self.releaseBeatList[code]
     if not isValid(eventBeat) then
-        eventBeat = LuaClass.EventBeat("KeyRelease" .. code)
+        eventBeat = LuaClass.EventBeat("KeyRelease" .. codeString)
         self.releaseBeatList[code] = eventBeat
     end
     eventBeat:add(handler)
@@ -62,13 +67,13 @@ function KeyManager:unregisterReleaseHandler(code, handler)
 end
 
 function KeyManager:defaultKeyList()
-    self:registerPressHandler(LuaClass.KeyCode.F5, function()
+    self:registerPressHandler(LuaClass.KeyCode.F5, "F5", function()
         --清理内存中的文件
-        LuaClass.clearLua(LuaClass.Debug)
+        LuaClass.clearLua("Debug")
         --require的会执行里面的代码
         local a = LuaClass.Debug
     end)
-    self:registerPressHandler(LuaClass.KeyCode.F6,function()
+    self:registerPressHandler(LuaClass.KeyCode.F6, "F6", function()
         App:restart()
     end)
 end

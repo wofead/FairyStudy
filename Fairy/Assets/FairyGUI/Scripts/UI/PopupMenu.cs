@@ -107,6 +107,14 @@ namespace FairyGUI
             return item;
         }
 
+        public GButton AddItemForce(string caption, EventCallback1 callback)
+        {
+            GButton item = CreateItem(caption, callback);
+            _list.AddChild(item);
+
+            return item;
+        }
+
         /// <summary>
         /// 
         /// </summary>

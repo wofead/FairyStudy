@@ -36,8 +36,9 @@ function UiManager:ctor()
     self.repeatViewCount = 1
 
     for _, layerName in ipairs(self.LayerSort) do
+        ---@type FairyGUI.GComponent
         local layer = LuaClass.GuiGComponent()
-        layer.name = self.LayerType[value]
+        layer.name = self.LayerType[layerName]
         LuaClass.GuiGRoot.inst:AddChild(layer)
         layer.fairyBatching = true
         self.layerDic[layerName] = layer

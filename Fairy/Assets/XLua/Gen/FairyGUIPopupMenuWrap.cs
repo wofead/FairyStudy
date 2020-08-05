@@ -21,9 +21,10 @@ namespace XLua.CSObjectWrap
         {
 			ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
 			System.Type type = typeof(FairyGUI.PopupMenu);
-			Utils.BeginObjectRegister(type, L, translator, 0, 15, 8, 3);
+			Utils.BeginObjectRegister(type, L, translator, 0, 16, 8, 3);
 			
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "AddItem", _m_AddItem);
+			Utils.RegisterFunc(L, Utils.METHOD_IDX, "AddItemForce", _m_AddItemForce);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "AddItemAt", _m_AddItemAt);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "AddSeperator", _m_AddSeperator);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "GetItemName", _m_GetItemName);
@@ -149,6 +150,36 @@ namespace XLua.CSObjectWrap
             }
             
             return LuaAPI.luaL_error(L, "invalid arguments to FairyGUI.PopupMenu.AddItem!");
+            
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_AddItemForce(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+                FairyGUI.PopupMenu gen_to_be_invoked = (FairyGUI.PopupMenu)translator.FastGetCSObj(L, 1);
+            
+            
+                
+                {
+                    string _caption = LuaAPI.lua_tostring(L, 2);
+                    FairyGUI.EventCallback1 _callback = translator.GetDelegate<FairyGUI.EventCallback1>(L, 3);
+                    
+                        FairyGUI.GButton gen_ret = gen_to_be_invoked.AddItemForce( _caption, _callback );
+                        translator.Push(L, gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
+                
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
             
         }
         

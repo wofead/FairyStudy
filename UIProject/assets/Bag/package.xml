@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<packageDescription id="rbw1tv9t" jpegQuality="80" compressPNG="true">
+<packageDescription id="rbw1tv9t">
   <resources>
     <component id="kcy10" name="BagWin.xml" path="/" exported="true"/>
     <image id="dwwc2" name="5.png" path="/images/" scale="9grid" scale9grid="88,78,441,243"/>
@@ -18,6 +18,16 @@
     <image id="thi7h" name="8.png" path="/images/" scale="9grid" scale9grid="31,26,62,52"/>
     <movieclip id="thi7j" name="quan.jta" path="/images/"/>
     <component id="osdok" name="dot.xml" path="/"/>
+    <image id="6sx2l" name="i0.png" path="/Icons/" exported="true"/>
+    <image id="6sx2m" name="i1.png" path="/Icons/" exported="true"/>
+    <image id="6sx2n" name="i2.png" path="/Icons/" exported="true"/>
+    <image id="6sx2o" name="i3.png" path="/Icons/" exported="true"/>
+    <image id="6sx2p" name="i4.png" path="/Icons/" exported="true"/>
+    <image id="6sx2q" name="i5.png" path="/Icons/" exported="true"/>
+    <image id="6sx2r" name="i6.png" path="/Icons/" exported="true"/>
+    <image id="6sx2s" name="i7.png" path="/Icons/" exported="true"/>
+    <image id="6sx2t" name="i8.png" path="/Icons/" exported="true"/>
+    <image id="6sx2u" name="i9.png" path="/Icons/" exported="true"/>
   </resources>
   <publish name="Bag">
     <atlas name="Default" index="0"/>

@@ -74,8 +74,359 @@ UiConstant.Basics = {
     isFallScreen = true,
 }
 
+UiConstant.BundleUsage = {
+    moduleConfig = LuaClass.ModuleConstant.BundleUsage,
+    packageName = "BundleUsage",
+    componentName = "Main",
+    layerType = App.uiManager.LayerType.FixedLayer,
+    isCanComeback = true,
+    isRepeat = false,
+    isAutoClose = false,
+    isCache = false,
+    isFallScreen = true,
+}
+
+UiConstant.CoolDown = {
+    moduleConfig = LuaClass.ModuleConstant.CoolDown,
+    packageName = "BundleUsage",
+    componentName = "Main",
+    layerType = App.uiManager.LayerType.FixedLayer,
+    isCanComeback = true,
+    isRepeat = false,
+    isAutoClose = false,
+    isCache = false,
+    isFallScreen = true,
+}
+
+UiConstant.Curve = {
+    moduleConfig = LuaClass.ModuleConstant.Curve,
+    packageName = "Curve",
+    componentName = "Main",
+    layerType = App.uiManager.LayerType.FixedLayer,
+    isCanComeback = true,
+    isRepeat = false,
+    isAutoClose = false,
+    isCache = false,
+    isFallScreen = true,
+}
+
+UiConstant.CutScene = {
+    moduleConfig = LuaClass.ModuleConstant.CutScene,
+    packageName = "CutScene",
+    componentName = "Main",
+    layerType = App.uiManager.LayerType.FixedLayer,
+    isCanComeback = true,
+    isRepeat = false,
+    isAutoClose = false,
+    isCache = false,
+    isFallScreen = true,
+}
+
+UiConstant.EmitNumbers = {
+    moduleConfig = LuaClass.ModuleConstant.EmitNumbers,
+    packageName = "EmitNumbers",
+    componentName = "Main",
+    layerType = App.uiManager.LayerType.FixedLayer,
+    isCanComeback = true,
+    isRepeat = false,
+    isAutoClose = false,
+    isCache = false,
+    isFallScreen = true,
+}
+
+UiConstant.Emoji = {
+    moduleConfig = LuaClass.ModuleConstant.Emoji,
+    packageName = "Emoji",
+    componentName = "Main",
+    layerType = App.uiManager.LayerType.FixedLayer,
+    isCanComeback = true,
+    isRepeat = false,
+    isAutoClose = false,
+    isCache = false,
+    isFallScreen = true,
+}
+
+UiConstant.Extension = {
+    moduleConfig = LuaClass.ModuleConstant.Extension,
+    packageName = "Extension",
+    componentName = "Main",
+    layerType = App.uiManager.LayerType.FixedLayer,
+    isCanComeback = true,
+    isRepeat = false,
+    isAutoClose = false,
+    isCache = false,
+    isFallScreen = true,
+}
+
+UiConstant.Filter = {
+    moduleConfig = LuaClass.ModuleConstant.Filter,
+    packageName = "Filter",
+    componentName = "Main",
+    layerType = App.uiManager.LayerType.FixedLayer,
+    isCanComeback = true,
+    isRepeat = false,
+    isAutoClose = false,
+    isCache = false,
+    isFallScreen = true,
+}
+
+UiConstant.Gesture = {
+    moduleConfig = LuaClass.ModuleConstant.Gesture,
+    packageName = "Gesture",
+    componentName = "Main",
+    layerType = App.uiManager.LayerType.FixedLayer,
+    isCanComeback = true,
+    isRepeat = false,
+    isAutoClose = false,
+    isCache = false,
+    isFallScreen = true,
+}
+
+UiConstant.Guide = {
+    moduleConfig = LuaClass.ModuleConstant.Guide,
+    packageName = "Guide",
+    componentName = "Main",
+    layerType = App.uiManager.LayerType.FixedLayer,
+    isCanComeback = true,
+    isRepeat = false,
+    isAutoClose = false,
+    isCache = false,
+    isFallScreen = true,
+}
+
+UiConstant.HeadBar = {
+    moduleConfig = LuaClass.ModuleConstant.HeadBar,
+    packageName = "HeadBar",
+    componentName = "Main",
+    layerType = App.uiManager.LayerType.FixedLayer,
+    isCanComeback = true,
+    isRepeat = false,
+    isAutoClose = false,
+    isCache = false,
+    isFallScreen = true,
+}
+
+UiConstant.HitTest = {
+    moduleConfig = LuaClass.ModuleConstant.HitTest,
+    packageName = "HitTest",
+    componentName = "Main",
+    layerType = App.uiManager.LayerType.FixedLayer,
+    isCanComeback = true,
+    isRepeat = false,
+    isAutoClose = false,
+    isCache = false,
+    isFallScreen = true,
+}
+
+UiConstant.JoyStick = {
+    moduleConfig = LuaClass.ModuleConstant.JoyStick,
+    packageName = "JoyStick",
+    componentName = "Main",
+    layerType = App.uiManager.LayerType.FixedLayer,
+    isCanComeback = true,
+    isRepeat = false,
+    isAutoClose = false,
+    isCache = false,
+    isFallScreen = true,
+}
+
+UiConstant.LoopList = {
+    moduleConfig = LuaClass.ModuleConstant.LoopList,
+    packageName = "LoopList",
+    componentName = "Main",
+    layerType = App.uiManager.LayerType.FixedLayer,
+    isCanComeback = true,
+    isRepeat = false,
+    isAutoClose = false,
+    isCache = false,
+    isFallScreen = true,
+}
+
+UiConstant.ModalWaiting = {
+    moduleConfig = LuaClass.ModuleConstant.ModalWaiting,
+    packageName = "ModalWaiting",
+    componentName = "Main",
+    layerType = App.uiManager.LayerType.FixedLayer,
+    isCanComeback = true,
+    isRepeat = false,
+    isAutoClose = false,
+    isCache = false,
+    isFallScreen = true,
+}
+
+UiConstant.Model = {
+    moduleConfig = LuaClass.ModuleConstant.Model,
+    packageName = "Model",
+    componentName = "Main",
+    layerType = App.uiManager.LayerType.FixedLayer,
+    isCanComeback = true,
+    isRepeat = false,
+    isAutoClose = false,
+    isCache = false,
+    isFallScreen = true,
+}
+
+UiConstant.Particles = {
+    moduleConfig = LuaClass.ModuleConstant.Particles,
+    packageName = "Particles",
+    componentName = "Main",
+    layerType = App.uiManager.LayerType.FixedLayer,
+    isCanComeback = true,
+    isRepeat = false,
+    isAutoClose = false,
+    isCache = false,
+    isFallScreen = true,
+}
+
+UiConstant.Perspective = {
+    moduleConfig = LuaClass.ModuleConstant.Perspective,
+    packageName = "Perspective",
+    componentName = "Main",
+    layerType = App.uiManager.LayerType.FixedLayer,
+    isCanComeback = true,
+    isRepeat = false,
+    isAutoClose = false,
+    isCache = false,
+    isFallScreen = true,
+}
+
+UiConstant.PullToRefresh = {
+    moduleConfig = LuaClass.ModuleConstant.PullToRefresh,
+    packageName = "PullToRefresh",
+    componentName = "Main",
+    layerType = App.uiManager.LayerType.FixedLayer,
+    isCanComeback = true,
+    isRepeat = false,
+    isAutoClose = false,
+    isCache = false,
+    isFallScreen = true,
+}
+
+UiConstant.RenderTexture = {
+    moduleConfig = LuaClass.ModuleConstant.RenderTexture,
+    packageName = "RenderTexture",
+    componentName = "Main",
+    layerType = App.uiManager.LayerType.FixedLayer,
+    isCanComeback = true,
+    isRepeat = false,
+    isAutoClose = false,
+    isCache = false,
+    isFallScreen = true,
+}
+
+UiConstant.ScrollPane = {
+    moduleConfig = LuaClass.ModuleConstant.ScrollPane,
+    packageName = "ScrollPane",
+    componentName = "Main",
+    layerType = App.uiManager.LayerType.FixedLayer,
+    isCanComeback = true,
+    isRepeat = false,
+    isAutoClose = false,
+    isCache = false,
+    isFallScreen = true,
+}
+
+UiConstant.Transition = {
+    moduleConfig = LuaClass.ModuleConstant.Transition,
+    packageName = "Transition",
+    componentName = "Main",
+    layerType = App.uiManager.LayerType.FixedLayer,
+    isCanComeback = true,
+    isRepeat = false,
+    isAutoClose = false,
+    isCache = false,
+    isFallScreen = true,
+}
+
+UiConstant.TreeView = {
+    moduleConfig = LuaClass.ModuleConstant.TreeView,
+    packageName = "TreeView",
+    componentName = "Main",
+    layerType = App.uiManager.LayerType.FixedLayer,
+    isCanComeback = true,
+    isRepeat = false,
+    isAutoClose = false,
+    isCache = false,
+    isFallScreen = true,
+}
+
+UiConstant.TurnCard = {
+    moduleConfig = LuaClass.ModuleConstant.TurnCard,
+    packageName = "TurnCard",
+    componentName = "Main",
+    layerType = App.uiManager.LayerType.FixedLayer,
+    isCanComeback = true,
+    isRepeat = false,
+    isAutoClose = false,
+    isCache = false,
+    isFallScreen = true,
+}
+
+UiConstant.TurnPage = {
+    moduleConfig = LuaClass.ModuleConstant.TurnPage,
+    packageName = "TurnPage",
+    componentName = "Main",
+    layerType = App.uiManager.LayerType.FixedLayer,
+    isCanComeback = true,
+    isRepeat = false,
+    isAutoClose = false,
+    isCache = false,
+    isFallScreen = true,
+}
+
+UiConstant.TypingEffect = {
+    moduleConfig = LuaClass.ModuleConstant.TypingEffect,
+    packageName = "TypingEffect",
+    componentName = "Main",
+    layerType = App.uiManager.LayerType.FixedLayer,
+    isCanComeback = true,
+    isRepeat = false,
+    isAutoClose = false,
+    isCache = false,
+    isFallScreen = true,
+}
+
+UiConstant.VirtualList = {
+    moduleConfig = LuaClass.ModuleConstant.VirtualList,
+    packageName = "VirtualList",
+    componentName = "Main",
+    layerType = App.uiManager.LayerType.FixedLayer,
+    isCanComeback = true,
+    isRepeat = false,
+    isAutoClose = false,
+    isCache = false,
+    isFallScreen = true,
+}
+
 UiConstant.List = {
     UiConstant.Bag,
     UiConstant.Basics,
+    UiConstant.BundleUsage,
+    UiConstant.CoolDown,
+    UiConstant.Curve,
+    UiConstant.CutScene,
+    UiConstant.EmitNumbers,
+    UiConstant.Emoji,
+    UiConstant.Extension,
+    UiConstant.Filter,
+    UiConstant.Gesture,
+    UiConstant.Guide,
+    UiConstant.HeadBar,
+    UiConstant.HitTest,
+    UiConstant.JoyStick,
+    UiConstant.LoopList,
+    UiConstant.ModalWaiting,
+    UiConstant.Model,
+    UiConstant.Particles,
+    UiConstant.Perspective,
+    UiConstant.PullToRefresh,
+    UiConstant.RenderTexture,
+    UiConstant.ScrollPane,
+    UiConstant.Transition,
+    UiConstant.TreeView,
+    UiConstant.TurnCard,
+    UiConstant.TurnPage,
+    UiConstant.TypingEffect,
+    UiConstant.VirtualList,
 }
 return UiConstant

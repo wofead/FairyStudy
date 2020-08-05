@@ -36,7 +36,7 @@ function App:cancelAutoRelease(gameObject)
 end
 
 function App:update(deltaTime)
-    self.updateBeat:update(dt)
+    self.updateBeat:update(deltaTime)
     for go, _ in ipairs(self.autoReleaseObjects) do
         self.autoReleaseObjects[go] = nil
         if isValid(go) then
@@ -70,6 +70,8 @@ function App:initManager()
     self.uiManager = LuaClass.UiManager()
     ---@type KeyManager
     self.keyManager = LuaClass.KeyManager()
+    ---@type TimerManager
+    self.timeManager = LuaClass.TimerManager()
 end
 
 function App:initModule()
@@ -79,6 +81,8 @@ function App:initModule()
     self.basicsModule = LuaClass.BasicsModule()
     ---@type BagModule
     self.bagModule = LuaClass.BagModule()
+    ---@type BundleUsageModule
+    self.bundleUsageModule = LuaClass.BundleUsageModule()
 end
 
 function App:gameStart()

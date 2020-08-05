@@ -44,8 +44,13 @@ LuaClassList =
 	bagview                                 = "Module.Bag.BagView",
 	basicsmodule                            = "Module.Basics.BasicsModule",
 	basicsview                              = "Module.Basics.BasicsView",
+	bundleusagemodule                       = "Module.BundleUsage.BundleUsageModule",
+	bundleusageview                         = "Module.BundleUsage.BundleUsageView",
 	mainmodule                              = "Module.MainScene.MainModule",
 	mainview                                = "Module.MainScene.MainView",
+	bagwindow                               = "Module.Windows.BagWindow",
+	windowsa                                = "Module.Windows.WindowsA",
+	windowsb                                = "Module.Windows.WindowsB",
 
 }
 

@@ -21,8 +21,11 @@ namespace XLua.CSObjectWrap
         {
 			ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
 			System.Type type = typeof(FairyGUI.NGraphics);
-			Utils.BeginObjectRegister(type, L, translator, 0, 10, 18, 13);
+			Utils.BeginObjectRegister(type, L, translator, 0, 13, 18, 13);
 			
+			Utils.RegisterFunc(L, Utils.METHOD_IDX, "GetMeshFactoryEM", _m_GetMeshFactoryEM);
+			Utils.RegisterFunc(L, Utils.METHOD_IDX, "GetMeshFactoryPM", _m_GetMeshFactoryPM);
+			Utils.RegisterFunc(L, Utils.METHOD_IDX, "GetMeshFactoryLM", _m_GetMeshFactoryLM);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "SetShaderAndTexture", _m_SetShaderAndTexture);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "SetMaterial", _m_SetMaterial);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "ToggleKeyword", _m_ToggleKeyword);
@@ -112,6 +115,90 @@ namespace XLua.CSObjectWrap
         
         
         
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_GetMeshFactoryEM(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+                FairyGUI.NGraphics gen_to_be_invoked = (FairyGUI.NGraphics)translator.FastGetCSObj(L, 1);
+            
+            
+                
+                {
+                    
+                        FairyGUI.EllipseMesh gen_ret = gen_to_be_invoked.GetMeshFactoryEM(  );
+                        translator.Push(L, gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
+                
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
+            
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_GetMeshFactoryPM(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+                FairyGUI.NGraphics gen_to_be_invoked = (FairyGUI.NGraphics)translator.FastGetCSObj(L, 1);
+            
+            
+                
+                {
+                    
+                        FairyGUI.PolygonMesh gen_ret = gen_to_be_invoked.GetMeshFactoryPM(  );
+                        translator.Push(L, gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
+                
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
+            
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_GetMeshFactoryLM(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+                FairyGUI.NGraphics gen_to_be_invoked = (FairyGUI.NGraphics)translator.FastGetCSObj(L, 1);
+            
+            
+                
+                {
+                    
+                        FairyGUI.LineMesh gen_ret = gen_to_be_invoked.GetMeshFactoryLM(  );
+                        translator.Push(L, gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
+                
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
+            
+        }
         
         [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
         static int _m_SetShaderAndTexture(RealStatePtr L)

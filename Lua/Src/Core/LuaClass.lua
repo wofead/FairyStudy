@@ -50,6 +50,7 @@ function LuaClass.clearLua(className)
         error("Effor: No Lua Script:" .. key)
         return
     end
+    LuaClass[className] = nil
     package.loaded[LuaClassList[low]] = nil
 end
 initLuaClass()

@@ -14,7 +14,7 @@
       <relation target="" sidePair="width-width,height-height"/>
     </loader>
     <text id="n3_ir6a" name="title" xy="51,21" size="70,32" fontSize="22" color="#ffffff" align="center" vAlign="middle" strokeColor="#66cc99" text="Basics">
-      <relation target="" sidePair="width-width,height-height"/>
+      <relation target="" sidePair="width-width,height-height,center-center,middle-middle"/>
     </text>
   </displayList>
   <Button/>

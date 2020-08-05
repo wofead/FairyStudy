@@ -164,7 +164,7 @@ namespace XLua
                 if (udata != -1)
                 {
                     ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
-                    if ( translator != null )
+                    if (translator != null)
                     {
                         translator.collectObject(udata);
                     }
@@ -606,7 +606,7 @@ namespace XLua
             {
                 int n = LuaAPI.lua_gettop(L);
                 string s = String.Empty;
-
+                string color = "";
                 if (0 != LuaAPI.xlua_getglobal(L, "tostring"))
                 {
                     return LuaAPI.luaL_error(L, "can not get tostring in print:");
@@ -620,13 +620,34 @@ namespace XLua
                     {
                         return LuaAPI.lua_error(L);
                     }
-                    s += LuaAPI.lua_tostring(L, -1);
-
-                    if (i != n) s += "\t";
-
+                    if (i == 1)
+                    {
+                        color = LuaAPI.lua_tostring(L, -1);
+                    }
+                    else
+                    {
+                        s += LuaAPI.lua_tostring(L, -1);
+                        if (i != n) s += "\t";
+                    }
                     LuaAPI.lua_pop(L, 1);  /* pop result */
                 }
-                UnityEngine.Debug.Log("LUA: " + s);
+                string stack = string.Empty;
+#if UNITY_EDITOR
+                int old_top = LuaAPI.lua_gettop(L);
+                LuaAPI.xlua_getglobal(L, "_G");
+
+                LuaAPI.lua_pushstring(L, "debug");
+                LuaAPI.lua_rawget(L, -2);
+
+                LuaAPI.lua_pushstring(L, "traceback");
+                LuaAPI.lua_rawget(L, -2);
+
+                int error = LuaAPI.lua_pcall(L, 0, 1, 0);
+                if (error == 0)
+                    stack = LuaAPI.lua_tostring(L, -1);
+                LuaAPI.lua_settop(L, old_top);
+#endif
+                FairyStudy.LogUtil.InfoColor(color, "LUA: " + s + "\n");
                 return 0;
             }
             catch (System.Exception e)
@@ -894,7 +915,7 @@ namespace XLua
                 else
                 {
                     Type[] typeArguments = new Type[top - 1];
-                    for(int i = 2; i <= top; i++)
+                    for (int i = 2; i <= top; i++)
                     {
 
                         typeArguments[i - 2] = getType(L, translator, i);
@@ -1043,7 +1064,7 @@ namespace XLua
                     return LuaAPI.luaL_error(L, "xlua.private_accessible, can not find c# type");
                 }
 
-                while(type != null)
+                while (type != null)
                 {
                     translator.PrivateAccessible(L, type);
                     type = type.BaseType();
@@ -1152,7 +1173,7 @@ namespace XLua
                 translator.Get(L, LuaAPI.xlua_upvalueindex(1), out genericMethod);
                 int n = LuaAPI.lua_gettop(L);
                 Type[] typeArguments = new Type[n];
-                for(int i = 0; i < n; i++)
+                for (int i = 0; i < n; i++)
                 {
                     Type type = getType(L, translator, i + 1);
                     if (type == null)
@@ -1190,7 +1211,7 @@ namespace XLua
                 }
                 System.Collections.Generic.List<MethodInfo> matchMethods = new System.Collections.Generic.List<MethodInfo>();
                 var allMethods = type.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Static | BindingFlags.Instance);
-                for(int i = 0; i < allMethods.Length; i++)
+                for (int i = 0; i < allMethods.Length; i++)
                 {
                     var method = allMethods[i];
                     if (method.Name == methodName && method.IsGenericMethodDefinition)

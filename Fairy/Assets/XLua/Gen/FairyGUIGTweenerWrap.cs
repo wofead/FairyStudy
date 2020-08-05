@@ -21,7 +21,7 @@ namespace XLua.CSObjectWrap
         {
 			ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
 			System.Type type = typeof(FairyGUI.GTweener);
-			Utils.BeginObjectRegister(type, L, translator, 0, 20, 12, 0);
+			Utils.BeginObjectRegister(type, L, translator, 0, 21, 12, 0);
 			
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "SetDelay", _m_SetDelay);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "SetDuration", _m_SetDuration);
@@ -37,6 +37,7 @@ namespace XLua.CSObjectWrap
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "SetTarget", _m_SetTarget);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "SetUserData", _m_SetUserData);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "OnUpdate", _m_OnUpdate);
+			Utils.RegisterFunc(L, Utils.METHOD_IDX, "OnUpdateForce", _m_OnUpdateForce);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "OnStart", _m_OnStart);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "OnComplete", _m_OnComplete);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "SetListener", _m_SetListener);
@@ -553,6 +554,35 @@ namespace XLua.CSObjectWrap
             }
             
             return LuaAPI.luaL_error(L, "invalid arguments to FairyGUI.GTweener.OnUpdate!");
+            
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_OnUpdateForce(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+                FairyGUI.GTweener gen_to_be_invoked = (FairyGUI.GTweener)translator.FastGetCSObj(L, 1);
+            
+            
+                
+                {
+                    FairyGUI.GTweenCallback1 _callback = translator.GetDelegate<FairyGUI.GTweenCallback1>(L, 2);
+                    
+                        FairyGUI.GTweener gen_ret = gen_to_be_invoked.OnUpdateForce( _callback );
+                        translator.Push(L, gen_ret);
+                    
+                    
+                    
+                    return 1;
+                }
+                
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
             
         }
         

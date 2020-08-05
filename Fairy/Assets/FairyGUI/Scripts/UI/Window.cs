@@ -1,6 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
-
+using XLua;
 namespace FairyGUI
 {
     /// <summary>
@@ -381,11 +382,18 @@ namespace FairyGUI
                 _init();
         }
 
+        private LuaTable _luaTable;
+        public void SetLuaTable(LuaTable luaTable)
+        {
+            _luaTable = luaTable;
+        }
+
         /// <summary>
         /// 
         /// </summary>
         virtual protected void OnInit()
         {
+            CallLua("OnInit");
 #if FAIRYGUI_TOLUA
             CallLua("OnInit");
 #endif
@@ -396,6 +404,7 @@ namespace FairyGUI
         /// </summary>
         virtual protected void OnShown()
         {
+            CallLua("OnShown");
 #if FAIRYGUI_TOLUA
             CallLua("OnShown");
 #endif
@@ -406,6 +415,7 @@ namespace FairyGUI
         /// </summary>
         virtual protected void OnHide()
         {
+            CallLua("OnHide");
 #if FAIRYGUI_TOLUA
             CallLua("OnHide");
 #endif
@@ -416,11 +426,13 @@ namespace FairyGUI
         /// </summary>
         virtual protected void DoShowAnimation()
         {
+            if (!CallLua("DoShowAnimation"))
+                OnShown();
 #if FAIRYGUI_TOLUA
             if (!CallLua("DoShowAnimation"))
                 OnShown();
 #else
-            OnShown();
+            //OnShown();
 #endif
         }
 
@@ -429,11 +441,13 @@ namespace FairyGUI
         /// </summary>
         virtual protected void DoHideAnimation()
         {
+            if (!CallLua("DoHideAnimation"))
+                HideImmediately();
 #if FAIRYGUI_TOLUA
             if (!CallLua("DoHideAnimation"))
                 HideImmediately();
 #else
-            HideImmediately();
+            //HideImmediately();
 #endif
         }
 
@@ -500,6 +514,29 @@ namespace FairyGUI
             context.PreventDefault();
 
             this.StartDrag((int)context.data);
+        }
+
+        private bool CallLua(string funcName)
+        {
+            if (_luaTable != null)
+            {
+                LuaFunction func = _luaTable.Get<LuaFunction>(funcName);
+                if (func != null)
+                {
+                    try
+                    {
+                        func.Call(this._luaTable);
+                    }
+                    catch (Exception err)
+                    {
+                        Debug.LogError(err);
+                    }
+
+                    func.Dispose();
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

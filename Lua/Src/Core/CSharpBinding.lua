@@ -82,8 +82,28 @@ LuaClass.GuiUIPainter = CS.FairyGUI.UIPainter
 LuaClass.GuiTypingEffect = CS.FairyGUI.TypingEffect
 ---@type FairyGUI.UIConfig
 LuaClass.GuiUIConfig = CS.FairyGUI.UIConfig
+LuaClass.GuiPopupDirection = CS.FairyGUI.PopupDirection
+---@type FairyGUI.DragDropManager
+LuaClass.GuiDragDropManager = CS.FairyGUI.DragDropManager
+---@type FairyGUI.EllipseMesh
+LuaClass.GuiEllipseMesh = CS.FairyGUI.EllipseMesh
+---@type FairyGUI.PolygonMesh
+LuaClass.GuiPolygonMesh = CS.FairyGUI.PolygonMesh
+---@type FairyGUI.LineMesh
+LuaClass.GuiLineMesh = CS.FairyGUI.LineMesh
+---@type FairyGUI.VertexBuffer
+LuaClass.GuiVertexBuffer = CS.FairyGUI.VertexBuffer
+---@type FairyGUI.GPathPoint
+LuaClass.GuiGPathPoint = CS.FairyGUI.GPathPoint
+---@type FairyGUI.GTween
+LuaClass.GuiGTween = CS.FairyGUI.GTween
+LuaClass.EaseType = CS.FairyGUI.EaseType
+
+
 
 --Unity
+--- @type UnityEngine.AnimationCurve
+LuaClass.AnimationCurve = CS.UnityEngine.AnimationCurve
 --- @type UnityEngine.Vector2
 LuaClass.Vector2 = CS.UnityEngine.Vector2
 --- @type UnityEngine.Vector3
@@ -100,7 +120,7 @@ LuaClass.Time = CS.UnityEngine.Time
 LuaClass.Application = CS.UnityEngine.Application
 LuaClass.RuntimePlatform = CS.UnityEngine.RuntimePlatform
 --- @type UnityEngine.Debug
-LuaClass.Debug = CS.UnityEngine.Debug
+LuaClass.CsDebug = CS.UnityEngine.Debug
 ---@type UnityEngine.Rect
 LuaClass.Rect = CS.UnityEngine.Rect
 LuaClass.Sprite = CS.UnityEngine.Sprite
@@ -191,6 +211,7 @@ LuaClass.Resources = CS.UnityEngine.Resources
 LuaClass.TextAsset = CS.UnityEngine.TextAsset
 
 LuaClass.VideoPlayer = CS.UnityEngine.Video.VideoPlayer
+
 
 ---FairyStudy
 LuaClass.CsLogUtil = CS.FairyStudy.LogUtil

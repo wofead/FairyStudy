@@ -185,6 +185,14 @@ namespace FairyGUI
         /// 
         /// </summary>
         /// <param name="points"></param>
+        public void Create(GPathPoint[] points)
+        {
+            this.Create(points as IEnumerable<GPathPoint>);
+        }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="points"></param>
         public void Create(IEnumerable<GPathPoint> points)
         {
             _segments.Clear();

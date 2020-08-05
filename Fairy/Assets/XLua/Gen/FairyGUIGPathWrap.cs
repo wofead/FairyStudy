@@ -92,6 +92,16 @@ namespace XLua.CSObjectWrap
             
 			    int gen_param_count = LuaAPI.lua_gettop(L);
             
+                if(gen_param_count == 2&& translator.Assignable<FairyGUI.GPathPoint[]>(L, 2)) 
+                {
+                    FairyGUI.GPathPoint[] _points = (FairyGUI.GPathPoint[])translator.GetObject(L, 2, typeof(FairyGUI.GPathPoint[]));
+                    
+                    gen_to_be_invoked.Create( _points );
+                    
+                    
+                    
+                    return 0;
+                }
                 if(gen_param_count == 2&& translator.Assignable<System.Collections.Generic.IEnumerable<FairyGUI.GPathPoint>>(L, 2)) 
                 {
                     System.Collections.Generic.IEnumerable<FairyGUI.GPathPoint> _points = (System.Collections.Generic.IEnumerable<FairyGUI.GPathPoint>)translator.GetObject(L, 2, typeof(System.Collections.Generic.IEnumerable<FairyGUI.GPathPoint>));

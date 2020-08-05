@@ -137,7 +137,7 @@ local function _getLog(str, ...)
 end
 
 local function getStr(...)
-    local params = {}
+    local params = {...}
     return _getLog(__serialize(params))
 end
 
@@ -168,6 +168,5 @@ for k, v in pairs(LogUtil.users) do
         _PersonalPrint(v, ...)
     end
 end
-
 
 return LogUtil
