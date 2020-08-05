@@ -83,6 +83,58 @@ function App:initModule()
     self.bagModule = LuaClass.BagModule()
     ---@type BundleUsageModule
     self.bundleUsageModule = LuaClass.BundleUsageModule()
+    ---@type CoolDownModule
+    self.coolDownModule = LuaClass.CoolDownModule()
+    ---@type CurveModule
+    self.curveModule = LuaClass.CurveModule()
+    ---@type CutSceneModule
+    self.cutSceneModule = LuaClass.CutSceneModule()
+    ---@type EmitNumbersModule
+    self.emitNumbersModule = LuaClass.EmitNumbersModule()
+    ---@type EmojiModule
+    self.emojiModule = LuaClass.EmojiModule()
+    ---@type ExtensionModule
+    self.extensionModule = LuaClass.ExtensionModule()
+    ---@type FilterModule
+    self.filterModule = LuaClass.FilterModule()
+    ---@type GestureModule
+    self.gestureModule = LuaClass.GestureModule()
+    ---@type GuideModule
+    self.guideModule = LuaClass.GuideModule()
+    ---@type HeadBarModule
+    self.headBarModule = LuaClass.HeadBarModule()
+    ---@type HitTestModule
+    self.hitTestModule = LuaClass.HitTestModule()
+    ---@type JoyStickModule
+    self.joyStickModule = LuaClass.JoyStickModule()
+    ---@type LoopListModule
+    self.loopListModule = LuaClass.LoopListModule()
+    ---@type ModalWaitingModule
+    self.modalWaitingModule = LuaClass.ModalWaitingModule()
+    ---@type ModelModule
+    self.modelModule = LuaClass.ModelModule()
+    ---@type ParticlesModule
+    self.particlesModule = LuaClass.ParticlesModule()
+    ---@type PerspectiveModule
+    self.perspectiveModule = LuaClass.PerspectiveModule()
+    ---@type PullToRefreshModule
+    self.pullToRefreshModule = LuaClass.PullToRefreshModule()
+    ---@type RenderTextureModule
+    self.renderTextureModule = LuaClass.RenderTextureModule()
+    ---@type ScrollPaneModule
+    self.scrollPaneModule = LuaClass.ScrollPaneModule()
+    ---@type TransitionModule
+    self.transitionModule = LuaClass.TransitionModule()
+    ---@type TreeViewModule
+    self.treeViewModule = LuaClass.TreeViewModule()
+    ---@type TurnCardModule
+    self.turnCardModule = LuaClass.TurnCardModule()
+    ---@type TurnPageModule
+    self.turnPageModule = LuaClass.TurnPageModule()
+    ---@type TypingEffectModule
+    self.typingEffectModule = LuaClass.TypingEffectModule()
+    ---@type VirtualListModule
+    self.virtualListModule = LuaClass.VirtualListModule()
 end
 
 function App:gameStart()

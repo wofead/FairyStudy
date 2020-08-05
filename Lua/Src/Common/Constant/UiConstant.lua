@@ -220,7 +220,7 @@ UiConstant.HitTest = {
 
 UiConstant.JoyStick = {
     moduleConfig = LuaClass.ModuleConstant.JoyStick,
-    packageName = "JoyStick",
+    packageName = "Joystick",
     componentName = "Main",
     layerType = App.uiManager.LayerType.FixedLayer,
     isCanComeback = true,

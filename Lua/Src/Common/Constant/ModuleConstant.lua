@@ -40,7 +40,7 @@ ModuleConstant.Extension = {
     moduleName = "extensionModule"
 }
 ModuleConstant.Filter = {
-    moduleName = "filter =Module"
+    moduleName = "filterModule"
 }
 ModuleConstant.Gesture = {
     moduleName = "gestureModule"
