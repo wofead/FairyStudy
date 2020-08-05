@@ -1,48 +1,47 @@
----Author：  houn
----DATE：    2020/8/5
----DES:      
-
+-- @Author: jow
+-- @Date:   2020/8/5 10:04
+-- @Des:    
 local LuaClass = LuaClass
 local super = LuaClass.BaseUi
----@class EmitNumbersView:BaseUi
-local EmitNumbersView = class("EmitNumbersView", super)
+---@class ModelView:BaseUi
+local ModelView = class("ModelView", super)
 
-local module = App.emitNumbersModule
+local module = App.modelModule
 
 local eventDispatcher = module.eventDispatcher
 
 ---@type UiConstant
-EmitNumbersView.uiConfig = LuaClass.UiConstant.EmitNumbers
+ModelView.uiConfig = LuaClass.UiConstant.Model
 
-function EmitNumbersView:init()
+function ModelView:init()
 end
 
-function EmitNumbersView:onEnter()
+function ModelView:onEnter()
     super.onEnter(self)
     self:registerEvent()
 end
 
-function EmitNumbersView:registerEvent()
+function ModelView:registerEvent()
     local ui = self.ui
     local eventType = LuaClass.UiOperateUntil.UIEventType
     local registerEventFunc = LuaClass.UiOperateUntil.registerUIEvent
     App.keyManager:registerPressHandler(LuaClass.KeyCode.Escape, "Escape", handler(self, self.closeView))
 end
 
-function EmitNumbersView:unRegisterEvent()
+function ModelView:unRegisterEvent()
     App.keyManager:unregisterPressHandler(LuaClass.KeyCode.Escape, handler(self, self.closeView))
 end
 
-function EmitNumbersView:closeView()
+function ModelView:closeView()
     module:closeView()
 end
 
-function EmitNumbersView:onExit()
+function ModelView:onExit()
     self:unRegisterEvent()
 end
 
-function EmitNumbersView:dispose()
+function ModelView:dispose()
     super.dispose(self)
 end
 
-return EmitNumbersView
+return ModelView

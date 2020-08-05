@@ -1,48 +1,49 @@
----Author：  houn
----DATE：    2020/8/5
----DES:      
-
+-- @Author: jow
+-- @Date:   2020/8/5 9:49
+-- @Des:    
 local LuaClass = LuaClass
 local super = LuaClass.BaseUi
----@class EmitNumbersView:BaseUi
-local EmitNumbersView = class("EmitNumbersView", super)
+---@class GestureView:BaseUi
+local GestureView = class("GestureView", super)
 
-local module = App.emitNumbersModule
+
+local module = App.gestureModule
 
 local eventDispatcher = module.eventDispatcher
 
 ---@type UiConstant
-EmitNumbersView.uiConfig = LuaClass.UiConstant.EmitNumbers
+GestureView.uiConfig = LuaClass.UiConstant.Gesture
 
-function EmitNumbersView:init()
+function GestureView:init()
 end
 
-function EmitNumbersView:onEnter()
+function GestureView:onEnter()
     super.onEnter(self)
     self:registerEvent()
 end
 
-function EmitNumbersView:registerEvent()
+function GestureView:registerEvent()
     local ui = self.ui
     local eventType = LuaClass.UiOperateUntil.UIEventType
     local registerEventFunc = LuaClass.UiOperateUntil.registerUIEvent
     App.keyManager:registerPressHandler(LuaClass.KeyCode.Escape, "Escape", handler(self, self.closeView))
 end
 
-function EmitNumbersView:unRegisterEvent()
+function GestureView:unRegisterEvent()
     App.keyManager:unregisterPressHandler(LuaClass.KeyCode.Escape, handler(self, self.closeView))
 end
 
-function EmitNumbersView:closeView()
+function GestureView:closeView()
     module:closeView()
 end
 
-function EmitNumbersView:onExit()
+function GestureView:onExit()
     self:unRegisterEvent()
 end
 
-function EmitNumbersView:dispose()
+function GestureView:dispose()
     super.dispose(self)
 end
 
-return EmitNumbersView
+
+return GestureView

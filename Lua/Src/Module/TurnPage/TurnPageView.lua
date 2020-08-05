@@ -1,48 +1,47 @@
----Author：  houn
----DATE：    2020/8/5
----DES:      
-
+-- @Author: jow
+-- @Date:   2020/8/5 10:11
+-- @Des:    
 local LuaClass = LuaClass
 local super = LuaClass.BaseUi
----@class EmitNumbersView:BaseUi
-local EmitNumbersView = class("EmitNumbersView", super)
+---@class TurnPageView:BaseUi
+local TurnPageView = class("TurnPageView", super)
 
-local module = App.emitNumbersModule
+local module = App.turnPageModule
 
 local eventDispatcher = module.eventDispatcher
 
 ---@type UiConstant
-EmitNumbersView.uiConfig = LuaClass.UiConstant.EmitNumbers
+TurnPageView.uiConfig = LuaClass.UiConstant.TurnPage
 
-function EmitNumbersView:init()
+function TurnPageView:init()
 end
 
-function EmitNumbersView:onEnter()
+function TurnPageView:onEnter()
     super.onEnter(self)
     self:registerEvent()
 end
 
-function EmitNumbersView:registerEvent()
+function TurnPageView:registerEvent()
     local ui = self.ui
     local eventType = LuaClass.UiOperateUntil.UIEventType
     local registerEventFunc = LuaClass.UiOperateUntil.registerUIEvent
     App.keyManager:registerPressHandler(LuaClass.KeyCode.Escape, "Escape", handler(self, self.closeView))
 end
 
-function EmitNumbersView:unRegisterEvent()
+function TurnPageView:unRegisterEvent()
     App.keyManager:unregisterPressHandler(LuaClass.KeyCode.Escape, handler(self, self.closeView))
 end
 
-function EmitNumbersView:closeView()
+function TurnPageView:closeView()
     module:closeView()
 end
 
-function EmitNumbersView:onExit()
+function TurnPageView:onExit()
     self:unRegisterEvent()
 end
 
-function EmitNumbersView:dispose()
+function TurnPageView:dispose()
     super.dispose(self)
 end
 
-return EmitNumbersView
+return TurnPageView

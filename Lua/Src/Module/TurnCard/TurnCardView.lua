@@ -1,48 +1,47 @@
----Author：  houn
----DATE：    2020/8/5
----DES:      
-
+-- @Author: jow
+-- @Date:   2020/8/5 10:11
+-- @Des:    
 local LuaClass = LuaClass
 local super = LuaClass.BaseUi
----@class EmitNumbersView:BaseUi
-local EmitNumbersView = class("EmitNumbersView", super)
+---@class TurnCardView:BaseUi
+local TurnCardView = class("TurnCardView", super)
 
-local module = App.emitNumbersModule
+local module = App.turnCardModule
 
 local eventDispatcher = module.eventDispatcher
 
 ---@type UiConstant
-EmitNumbersView.uiConfig = LuaClass.UiConstant.EmitNumbers
+TurnCardView.uiConfig = LuaClass.UiConstant.TurnCard
 
-function EmitNumbersView:init()
+function TurnCardView:init()
 end
 
-function EmitNumbersView:onEnter()
+function TurnCardView:onEnter()
     super.onEnter(self)
     self:registerEvent()
 end
 
-function EmitNumbersView:registerEvent()
+function TurnCardView:registerEvent()
     local ui = self.ui
     local eventType = LuaClass.UiOperateUntil.UIEventType
     local registerEventFunc = LuaClass.UiOperateUntil.registerUIEvent
     App.keyManager:registerPressHandler(LuaClass.KeyCode.Escape, "Escape", handler(self, self.closeView))
 end
 
-function EmitNumbersView:unRegisterEvent()
+function TurnCardView:unRegisterEvent()
     App.keyManager:unregisterPressHandler(LuaClass.KeyCode.Escape, handler(self, self.closeView))
 end
 
-function EmitNumbersView:closeView()
+function TurnCardView:closeView()
     module:closeView()
 end
 
-function EmitNumbersView:onExit()
+function TurnCardView:onExit()
     self:unRegisterEvent()
 end
 
-function EmitNumbersView:dispose()
+function TurnCardView:dispose()
     super.dispose(self)
 end
 
-return EmitNumbersView
+return TurnCardView

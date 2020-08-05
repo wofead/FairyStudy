@@ -1,48 +1,47 @@
----Author：  houn
----DATE：    2020/8/5
----DES:      
-
+-- @Author: jow
+-- @Date:   2020/8/5 9:59
+-- @Des:    
 local LuaClass = LuaClass
 local super = LuaClass.BaseUi
----@class EmitNumbersView:BaseUi
-local EmitNumbersView = class("EmitNumbersView", super)
+---@class HeadBarView:BaseUi
+local HeadBarView = class("HeadBarView", super)
 
-local module = App.emitNumbersModule
+local module = App.headBarModule
 
 local eventDispatcher = module.eventDispatcher
 
 ---@type UiConstant
-EmitNumbersView.uiConfig = LuaClass.UiConstant.EmitNumbers
+HeadBarView.uiConfig = LuaClass.UiConstant.HeadBar
 
-function EmitNumbersView:init()
+function HeadBarView:init()
 end
 
-function EmitNumbersView:onEnter()
+function HeadBarView:onEnter()
     super.onEnter(self)
     self:registerEvent()
 end
 
-function EmitNumbersView:registerEvent()
+function HeadBarView:registerEvent()
     local ui = self.ui
     local eventType = LuaClass.UiOperateUntil.UIEventType
     local registerEventFunc = LuaClass.UiOperateUntil.registerUIEvent
     App.keyManager:registerPressHandler(LuaClass.KeyCode.Escape, "Escape", handler(self, self.closeView))
 end
 
-function EmitNumbersView:unRegisterEvent()
+function HeadBarView:unRegisterEvent()
     App.keyManager:unregisterPressHandler(LuaClass.KeyCode.Escape, handler(self, self.closeView))
 end
 
-function EmitNumbersView:closeView()
+function HeadBarView:closeView()
     module:closeView()
 end
 
-function EmitNumbersView:onExit()
+function HeadBarView:onExit()
     self:unRegisterEvent()
 end
 
-function EmitNumbersView:dispose()
+function HeadBarView:dispose()
     super.dispose(self)
 end
 
-return EmitNumbersView
+return HeadBarView

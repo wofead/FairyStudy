@@ -1,48 +1,47 @@
----Author：  houn
----DATE：    2020/8/5
----DES:      
-
+-- @Author: jow
+-- @Date:   2020/8/5 10:12
+-- @Des:    
 local LuaClass = LuaClass
 local super = LuaClass.BaseUi
----@class EmitNumbersView:BaseUi
-local EmitNumbersView = class("EmitNumbersView", super)
+---@class TransitionView:BaseUi
+local TransitionView = class("TransitionView", super)
 
-local module = App.emitNumbersModule
+local module = App.transitionModule
 
 local eventDispatcher = module.eventDispatcher
 
 ---@type UiConstant
-EmitNumbersView.uiConfig = LuaClass.UiConstant.EmitNumbers
+TransitionView.uiConfig = LuaClass.UiConstant.Transition
 
-function EmitNumbersView:init()
+function TransitionView:init()
 end
 
-function EmitNumbersView:onEnter()
+function TransitionView:onEnter()
     super.onEnter(self)
     self:registerEvent()
 end
 
-function EmitNumbersView:registerEvent()
+function TransitionView:registerEvent()
     local ui = self.ui
     local eventType = LuaClass.UiOperateUntil.UIEventType
     local registerEventFunc = LuaClass.UiOperateUntil.registerUIEvent
     App.keyManager:registerPressHandler(LuaClass.KeyCode.Escape, "Escape", handler(self, self.closeView))
 end
 
-function EmitNumbersView:unRegisterEvent()
+function TransitionView:unRegisterEvent()
     App.keyManager:unregisterPressHandler(LuaClass.KeyCode.Escape, handler(self, self.closeView))
 end
 
-function EmitNumbersView:closeView()
+function TransitionView:closeView()
     module:closeView()
 end
 
-function EmitNumbersView:onExit()
+function TransitionView:onExit()
     self:unRegisterEvent()
 end
 
-function EmitNumbersView:dispose()
+function TransitionView:dispose()
     super.dispose(self)
 end
 
-return EmitNumbersView
+return TransitionView

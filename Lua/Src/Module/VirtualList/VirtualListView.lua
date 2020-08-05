@@ -1,48 +1,47 @@
----Author：  houn
----DATE：    2020/8/5
----DES:      
-
+-- @Author: jow
+-- @Date:   2020/8/5 10:10
+-- @Des:    
 local LuaClass = LuaClass
 local super = LuaClass.BaseUi
----@class EmitNumbersView:BaseUi
-local EmitNumbersView = class("EmitNumbersView", super)
+---@class VirtualListView:BaseUi
+local VirtualListView = class("VirtualListView", super)
 
-local module = App.emitNumbersModule
+local module = App.virtualListModule
 
 local eventDispatcher = module.eventDispatcher
 
 ---@type UiConstant
-EmitNumbersView.uiConfig = LuaClass.UiConstant.EmitNumbers
+VirtualListView.uiConfig = LuaClass.UiConstant.VirtualList
 
-function EmitNumbersView:init()
+function VirtualListView:init()
 end
 
-function EmitNumbersView:onEnter()
+function VirtualListView:onEnter()
     super.onEnter(self)
     self:registerEvent()
 end
 
-function EmitNumbersView:registerEvent()
+function VirtualListView:registerEvent()
     local ui = self.ui
     local eventType = LuaClass.UiOperateUntil.UIEventType
     local registerEventFunc = LuaClass.UiOperateUntil.registerUIEvent
     App.keyManager:registerPressHandler(LuaClass.KeyCode.Escape, "Escape", handler(self, self.closeView))
 end
 
-function EmitNumbersView:unRegisterEvent()
+function VirtualListView:unRegisterEvent()
     App.keyManager:unregisterPressHandler(LuaClass.KeyCode.Escape, handler(self, self.closeView))
 end
 
-function EmitNumbersView:closeView()
+function VirtualListView:closeView()
     module:closeView()
 end
 
-function EmitNumbersView:onExit()
+function VirtualListView:onExit()
     self:unRegisterEvent()
 end
 
-function EmitNumbersView:dispose()
+function VirtualListView:dispose()
     super.dispose(self)
 end
 
-return EmitNumbersView
+return VirtualListView

@@ -1,48 +1,47 @@
----Author：  houn
----DATE：    2020/8/5
----DES:      
-
+-- @Author: jow
+-- @Date:   2020/8/5 10:03
+-- @Des:    
 local LuaClass = LuaClass
 local super = LuaClass.BaseUi
----@class EmitNumbersView:BaseUi
-local EmitNumbersView = class("EmitNumbersView", super)
+---@class ModalWaitingView:BaseUi
+local ModalWaitingView = class("ModalWaitingView", super)
 
-local module = App.emitNumbersModule
+local module = App.modalWaitingModule
 
 local eventDispatcher = module.eventDispatcher
 
 ---@type UiConstant
-EmitNumbersView.uiConfig = LuaClass.UiConstant.EmitNumbers
+ModalWaitingView.uiConfig = LuaClass.UiConstant.ModalWaiting
 
-function EmitNumbersView:init()
+function ModalWaitingView:init()
 end
 
-function EmitNumbersView:onEnter()
+function ModalWaitingView:onEnter()
     super.onEnter(self)
     self:registerEvent()
 end
 
-function EmitNumbersView:registerEvent()
+function ModalWaitingView:registerEvent()
     local ui = self.ui
     local eventType = LuaClass.UiOperateUntil.UIEventType
     local registerEventFunc = LuaClass.UiOperateUntil.registerUIEvent
     App.keyManager:registerPressHandler(LuaClass.KeyCode.Escape, "Escape", handler(self, self.closeView))
 end
 
-function EmitNumbersView:unRegisterEvent()
+function ModalWaitingView:unRegisterEvent()
     App.keyManager:unregisterPressHandler(LuaClass.KeyCode.Escape, handler(self, self.closeView))
 end
 
-function EmitNumbersView:closeView()
+function ModalWaitingView:closeView()
     module:closeView()
 end
 
-function EmitNumbersView:onExit()
+function ModalWaitingView:onExit()
     self:unRegisterEvent()
 end
 
-function EmitNumbersView:dispose()
+function ModalWaitingView:dispose()
     super.dispose(self)
 end
 
-return EmitNumbersView
+return ModalWaitingView
