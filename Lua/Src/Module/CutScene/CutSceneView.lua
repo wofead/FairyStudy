@@ -15,6 +15,19 @@ local eventDispatcher = module.eventDispatcher
 CutSceneView.uiConfig = LuaClass.UiConstant.CutScene
 
 function CutSceneView:init()
+    self.cutView = LuaClass.GuiUIPackage.CreateObject(self.uiConfig.packageName, "CutScene")
+    self.cutView:SetSize(LuaClass.GuiGRoot.inst.width, LuaClass.GuiGRoot.inst.height)
+    self.cutView:AddRelation(LuaClass.GuiGRoot.inst, LuaClass.GuiRelationType.Size)
+end
+
+function CutSceneView:loadScene(type)
+    LuaClass.GuiGRoot.inst:AddChild(self.cutView)
+    coroutine.wrap()
+    if type == 1 then
+
+    else
+
+    end
 end
 
 function CutSceneView:onEnter()
