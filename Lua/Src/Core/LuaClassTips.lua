@@ -20,6 +20,7 @@
 ---@field BaseUi  BaseUi   
 ---@field AssetPathUtilEx  AssetPathUtilEx   
 ---@field LogUtil  LogUtil   
+---@field ObjectPool  ObjectPool   
 ---@field StringUntil  StringUntil   
 ---@field UiOperateUntil  UiOperateUntil   
 ---@field CoreInit  CoreInit   

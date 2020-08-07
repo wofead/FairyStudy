@@ -8,13 +8,13 @@ local super = nil
 local BaseLuaComponent = class("BaseLuaComponent", super)
 
 function BaseLuaComponent:NewGameObject(...)
-    ---@type GameObject
+    ---@type UnityEngine.GameObject
     local go = LuaClass.GameObject(self.__cname)
     local comp = go:addLuaComponent(self, ...)
     return comp
 end
 
----@param gameObject GameObject
+---@param gameObject UnityEngine.GameObject
 function BaseLuaComponent:ctor(gameObject)
     self.gameObject = gameObject
     ---@type UnityEngine.Transform

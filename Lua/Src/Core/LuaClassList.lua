@@ -29,6 +29,7 @@ LuaClassList =
 	baseui                                  = "Common.Module.UiModule.BaseUi",
 	assetpathutilex                         = "Common.Util.AssetPathUtilEx",
 	logutil                                 = "Common.Util.LogUtil",
+	objectpool                              = "Common.Util.ObjectPool",
 	stringuntil                             = "Common.Util.StringUntil",
 	uioperateuntil                          = "Common.Util.UiOperateUntil",
 	coreinit                                = "Core.CoreInit",

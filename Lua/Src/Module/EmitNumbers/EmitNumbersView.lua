@@ -15,6 +15,17 @@ local eventDispatcher = module.eventDispatcher
 EmitNumbersView.uiConfig = LuaClass.UiConstant.EmitNumbers
 
 function EmitNumbersView:init()
+    self.hurtFont1 = "ui://EmitNumbers/number1"
+    self.hurtFont2 = "ui://EmitNumbers/number2"
+    self.criticalSign = "ui://EmitNumbers/critical"
+    local layer = LuaClass.GuiGComponent()
+    layer:setDisplayerName("Hp")
+    LuaClass.GuiGRoot.inst:AddChild(layer)
+    ---UI居中适配
+    layer.width = LuaClass.GameConfig.CC_DESIGN_RESOLUTION.width
+    layer.height = LuaClass.GameConfig.CC_DESIGN_RESOLUTION.height
+    layer:Center(true)
+    layer.fairyBatching  = true
 end
 
 function EmitNumbersView:onEnter()
