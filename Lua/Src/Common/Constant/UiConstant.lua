@@ -88,7 +88,7 @@ UiConstant.BundleUsage = {
 
 UiConstant.CoolDown = {
     moduleConfig = LuaClass.ModuleConstant.CoolDown,
-    packageName = "CoolDown",
+    packageName = "Cooldown",
     componentName = "Main",
     layerType = App.uiManager.LayerType.FixedLayer,
     isCanComeback = true,

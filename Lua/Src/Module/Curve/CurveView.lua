@@ -11,7 +11,6 @@ local module = App.curveModule
 
 local eventDispatcher = module.eventDispatcher
 
----@type UiConstant
 CurveView.uiConfig = LuaClass.UiConstant.Curve
 
 function CurveView:init()
@@ -25,7 +24,7 @@ end
 
 function CurveView:itemRenderer(index, obj)
     obj:SetPivot(0.5, 0.5)
-    obj.icon = LuaClass.GuiUIPackage.GetItemURL("Curve", "n" + (index + 1))
+    obj.icon = LuaClass.GuiUIPackage.GetItemURL("Curve", "n" .. (index + 1))
 end
 
 function CurveView:itemEffect()

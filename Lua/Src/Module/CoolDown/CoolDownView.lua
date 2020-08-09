@@ -11,13 +11,14 @@ local module = App.coolDownModule
 
 local eventDispatcher = module.eventDispatcher
 
----@type UiConstant
 CoolDownView.uiConfig = LuaClass.UiConstant.CoolDown
 
 function CoolDownView:init()
     local ui = self.ui
-    ui.b0.icon = "Cooldown/k0"
-    ui.b1.icon = "Cooldown/k1"
+    --ui://y768eypfplan19
+    --printJow("CoolDownView", LuaClass.GuiUIPackage.GetItemURL("Cooldown", "k0"), LuaClass.GuiUIPackage.GetItemURL("Cooldown", "k1"))
+    ui.b0:GetChild("icon").url = LuaClass.GuiUIPackage.GetItemURL("Cooldown", "k0")
+    ui.b1:GetChild("icon").url = LuaClass.GuiUIPackage.GetItemURL("Cooldown", "k1")
     self.mask1 = ui.b0:GetChild("mask")
     self.mask2 = ui.b1:GetChild("mask")
 end

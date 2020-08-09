@@ -14,7 +14,7 @@ function CurveModule:ctor()
 end
 
 function CurveModule:showView()
-    self.view = App.uiManager:showView(LuaClass.CurveModule)
+    self.view = App.uiManager:showView(LuaClass.CurveView)
 end
 
 function CurveModule:closeView()
