@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<packageDescription id="y768eypf" jpegQuality="80" compressPNG="true">
+<packageDescription id="y768eypf">
   <resources>
     <component id="fvaib" name="Main.xml" path="/" exported="true"/>
     <component id="ltiql" name="Button1.xml" path="/"/>
@@ -22,6 +22,8 @@
     <image id="p3ya15" name="9(4)_png.png" path="/images/"/>
     <image id="uo8117" name="mask0.png" path="/images/"/>
     <image id="uo8118" name="mask1.png" path="/images/"/>
+    <image id="plan19" name="k0.png" path="/images/" exported="true"/>
+    <image id="plan1a" name="k1.png" path="/images/" exported="true"/>
   </resources>
   <publish name="Cooldown">
     <atlas name="默认" index="0"/>

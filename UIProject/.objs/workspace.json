@@ -1,6 +1,7 @@
 {
   "doc.openedDocs": [
     "ui://zmgj1gj3ir6a0",
+    "ui://ddm193o7fou96",
     "ui://9leh0eyfrpmb1c",
     "ui://9leh0eyfl6f473",
     "ui://9leh0eyfzd9g41",
@@ -22,19 +23,23 @@
     "ui://rbw1tv9tjlmg7",
     "ui://9leh0eyfrpmb1b",
     "ui://zmgj1gj3ir6a3",
-    "ui://y768eypffvaib"
+    "ui://y768eypffvaib",
+    "ui://y768eypfltiql",
+    "ui://y768eypfp3yap",
+    "ui://i1i2ucwo113wo0"
   ],
   "libview.iconScale": 0,
   "auxline1": true,
-  "doc.activeDoc": "ui://zmgj1gj3ir6a0",
-  "backgroundColor": 6710886,
-  "libview.twoColumn": false,
+  "canvasColor": 10066329,
+  "doc.activeDoc": "ui://y768eypffvaib",
   "libview.currentGroup": "",
   "libview.expandedNodes": [
     "d8m5tmok",
     "/",
     "y768eypf",
     "/",
+    "y768eypf",
+    "/images/",
     "i1i2ucwo",
     "/",
     "ddm193o7",
@@ -45,6 +50,7 @@
     "/"
   ],
   "auxline2": true,
-  "canvasColor": 10066329,
+  "backgroundColor": 6710886,
+  "libview.twoColumn": false,
   "libview.firstColumnWidth": 357
 }
