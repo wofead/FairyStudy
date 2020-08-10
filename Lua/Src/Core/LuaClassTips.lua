@@ -44,6 +44,7 @@
 ---@field CurveView  CurveView   
 ---@field CutSceneModule  CutSceneModule   
 ---@field CutSceneView  CutSceneView   
+---@field EmitComponent  EmitComponent   
 ---@field EmitNumbersModule  EmitNumbersModule   
 ---@field EmitNumbersView  EmitNumbersView   
 ---@field EmojiModule  EmojiModule   

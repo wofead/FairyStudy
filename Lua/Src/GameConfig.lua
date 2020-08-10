@@ -23,4 +23,6 @@ GameConfig.CC_DESIGN_RESOLUTION = {
     end
 }
 
+GameConfig.PIXELS_PER_UNIT = 100
+
 return GameConfig

@@ -15,21 +15,43 @@ local eventDispatcher = module.eventDispatcher
 EmitNumbersView.uiConfig = LuaClass.UiConstant.EmitNumbers
 
 function EmitNumbersView:init()
-    self.hurtFont1 = "ui://EmitNumbers/number1"
-    self.hurtFont2 = "ui://EmitNumbers/number2"
-    self.criticalSign = "ui://EmitNumbers/critical"
     local layer = LuaClass.GuiGComponent()
-    layer:setDisplayerName("Hp")
-    LuaClass.GuiGRoot.inst:AddChild(layer)
+    self.view:AddChild(layer)
+    layer.name = "Hp"
     ---UI居中适配
     layer.width = LuaClass.GameConfig.CC_DESIGN_RESOLUTION.width
     layer.height = LuaClass.GameConfig.CC_DESIGN_RESOLUTION.height
     layer:Center(true)
-    layer.fairyBatching  = true
+    layer.fairyBatching = true
+    self.layer = layer
+end
+
+function EmitNumbersView:initScene()
+    self.npc1 = LuaClass.GameObject.Find("npc1").transform
+    self.npc2 = LuaClass.GameObject.Find("npc2").transform
+    self.timerEmit = App.timeManager:add(300, function()
+        ---@type EmitComponent
+        local emitComponent1 = App.poolManager:popComponent(LuaClass.EmitComponent)
+        self.layer:AddChild(emitComponent1.component)
+        emitComponent1.component.visible = true
+        emitComponent1:onHpChange(self.npc1, 0, math.random(100, 100000), math.random(1, 10) == 5)
+        ---@type EmitComponent
+        local emitComponent2 = App.poolManager:popComponent(LuaClass.EmitComponent)
+        self.layer:AddChild(emitComponent2.component)
+        emitComponent2.component.visible = true
+        emitComponent2:onHpChange(self.npc2, 1, math.random(100, 100000), math.random(1, 10) == 5)
+    end, -1)
 end
 
 function EmitNumbersView:onEnter()
     super.onEnter(self)
+    local op = LuaClass.SceneManager.LoadSceneAsync("scene3")
+    self.timer = App.timeManager:add(20, function()
+        if op.isDone then
+            self:initScene()
+            App.timeManager:remove(self.timer)
+        end
+    end, -1)
     self:registerEvent()
 end
 
@@ -45,7 +67,13 @@ function EmitNumbersView:unRegisterEvent()
 end
 
 function EmitNumbersView:closeView()
-    module:closeView()
+    local op = LuaClass.SceneManager.LoadSceneAsync("SampleScene")
+    self.timer = App.timeManager:add(20, function()
+        if op.isDone then
+            App.timeManager:remove(self.timer)
+            module:closeView()
+        end
+    end, -1)
 end
 
 function EmitNumbersView:onExit()

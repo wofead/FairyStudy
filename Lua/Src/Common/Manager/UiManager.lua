@@ -125,8 +125,10 @@ function UiManager:showView(viewClass, closeCallBack, ...)
 
         --3、判断上一个界面是否需要被隐藏
         if #self.allOpenViewList > 0 then
+            --- @type BaseUi
             local lastView = self.allOpenViewList[#self.allOpenViewList]
             if isValid(lastView) then
+                lastView.view.visible = false
                 if not lastView.isCanComeback then
                     self:closeView(lastView)
                 end

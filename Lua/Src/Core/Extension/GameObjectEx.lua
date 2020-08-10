@@ -2,7 +2,7 @@
 ---DATE：    2020/6/27
 ---DES:      对gameObject的扩张
 
----@type GameObject
+---@type UnityEngine.GameObject
 local GameObjectEx = LuaClass.Extension(LuaClass.GameObject)
 
 function GameObjectEx:addLuaComponent(module, ...)
@@ -58,6 +58,27 @@ function GameObjectEx:removeLuaComponent(module)
     if self.luaComponent then
         return self.luaComponent:remove(module)
     end
+end
+
+function GameObjectEx:addUIToSelf(packageName, cmpname)
+    local panel = self:AddComponent(typeof(LuaClass.GuiUIPanel))
+    panel.packageName = packageName
+    panel.componentName = cmpname
+    --设置renderMode的方式
+    panel.container.renderMode = LuaClass.RenderMode.WorldSpace
+    --设置sortingOrder的方式
+    panel:SetSortingOrder(1000, true)
+    --设置摄像机
+    panel.container.renderCamera = LuaClass.Camera.main
+    --设置大小，单位是米，所以要除以100
+    panel.container:SetScale(
+            panel.container.scale.x / LuaClass.GameConfig.PIXELS_PER_UNIT,
+            panel.container.scale.y / LuaClass.GameConfig.PIXELS_PER_UNIT
+    )
+    panel:CreateUI()
+
+    panel.gameObject.layer = LuaClass.GlobalConstant.MAP_LAYER
+    return panel
 end
 
 return GameObjectEx

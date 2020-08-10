@@ -53,6 +53,7 @@ LuaClassList =
 	curveview                               = "Module.Curve.CurveView",
 	cutscenemodule                          = "Module.CutScene.CutSceneModule",
 	cutsceneview                            = "Module.CutScene.CutSceneView",
+	emitcomponent                           = "Module.EmitNumbers.EmitComponent",
 	emitnumbersmodule                       = "Module.EmitNumbers.EmitNumbersModule",
 	emitnumbersview                         = "Module.EmitNumbers.EmitNumbersView",
 	emojimodule                             = "Module.Emoji.EmojiModule",

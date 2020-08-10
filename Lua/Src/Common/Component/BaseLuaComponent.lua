@@ -16,6 +16,7 @@ end
 
 ---@param gameObject UnityEngine.GameObject
 function BaseLuaComponent:ctor(gameObject)
+    ---@type UnityEngine.GameObject
     self.gameObject = gameObject
     ---@type UnityEngine.Transform
     self.transform = gameObject.transform
@@ -92,7 +93,7 @@ function BaseLuaComponent:setVisible(b, layer)
         self.hideLayer = hideLayer
         if not self._hideFunc then
             self._hideFunc = function(transform)
-                transform.gameObject:Layer(self.hideLayer)
+                transform.gameObject.layer = self.hideLayer
             end
         end
         self:actionRecursion(self.hideFunc)
@@ -107,7 +108,7 @@ function BaseLuaComponent:setLayer(layer)
         self.layer = layer
         if not self.setLayerFunc then
             self.setLayerFunc = function(transform)
-                transform.gameObject:Layer(self.layer)
+                transform.gameObject.layer = self.layer
             end
         end
         self:actionRecursion(self.setLayerFunc)
