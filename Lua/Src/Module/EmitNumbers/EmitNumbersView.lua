@@ -67,13 +67,10 @@ function EmitNumbersView:unRegisterEvent()
 end
 
 function EmitNumbersView:closeView()
-    local op = LuaClass.SceneManager.LoadSceneAsync("SampleScene")
-    self.timer = App.timeManager:add(20, function()
-        if op.isDone then
-            App.timeManager:remove(self.timer)
-            module:closeView()
-        end
-    end, -1)
+    App.timeManager:remove(self.timer)
+    App.timeManager:remove(self.timerEmit)
+    App.poolManager:cleanComponent(LuaClass.EmitComponent, "clean")
+    module:closeView()
 end
 
 function EmitNumbersView:onExit()

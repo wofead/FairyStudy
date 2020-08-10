@@ -114,6 +114,15 @@ function PoolManager:pushResPrefab(prefab, go)
     end
 end
 
+function PoolManager:cleanComponent(luaClass, cleanFunc)
+    local pool = self._poolDict[luaClass.__cname]
+    for comp, value in pairs(pool.cacheDic) do
+        if not value then
+            comp[cleanFunc](comp)
+        end
+    end
+end
+
 function PoolManager:clean()
     self._poolDict = {}
 end

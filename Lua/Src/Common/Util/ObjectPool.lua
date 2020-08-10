@@ -31,10 +31,10 @@ function ObjectPool:get(...)
     local obj
     if #self.cacheArr > 0 then
         obj = table.remove(self.cacheArr)
-        self.cacheDic[obj] = false
     else
         obj = self.constructor()
     end
+    self.cacheDic[obj] = false
     if self.init then
         self.init(obj, ...)
     end

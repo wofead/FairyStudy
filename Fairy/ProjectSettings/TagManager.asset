@@ -13,6 +13,10 @@ TagManager:
   - UI
   - 
   - 
+  - PostProcessing
+  - Map
+  - Land
+  - Avatar
   - 
   - 
   - 
@@ -21,6 +25,7 @@ TagManager:
   - 
   - 
   - 
+  - Light
   - 
   - 
   - 
@@ -29,15 +34,16 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - HideLayer
+  - VUI
+  - Hidden VUI
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Map
+    uniqueID: 3723001937
+    locked: 0
+  - name: UI
+    uniqueID: 590389515
     locked: 0

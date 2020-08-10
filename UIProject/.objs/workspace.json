@@ -30,9 +30,13 @@
   ],
   "libview.iconScale": 0,
   "auxline1": true,
-  "canvasColor": 10066329,
+  "libview.firstColumnWidth": 357,
   "doc.activeDoc": "ui://y768eypffvaib",
+  "libview.twoColumn": false,
   "libview.currentGroup": "",
+  "canvasColor": 10066329,
+  "auxline2": true,
+  "backgroundColor": 6710886,
   "libview.expandedNodes": [
     "d8m5tmok",
     "/",
@@ -48,9 +52,5 @@
     "/",
     "zmgj1gj3",
     "/"
-  ],
-  "auxline2": true,
-  "backgroundColor": 6710886,
-  "libview.twoColumn": false,
-  "libview.firstColumnWidth": 357
+  ]
 }

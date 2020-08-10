@@ -49,7 +49,7 @@ function EmitComponent:onHpChange(owner, type, value, critic)
     self.component.alpha = 1
     local toX = math.random(0, 80) * 2
     local toY = math.random(0, 80) * 2
-    LuaClass.GuiGTween.To(LuaClass.Vector2.zero, LuaClass.Vector2(toX, toY), 1):SetTarget(self.component):OnUpdate(function(tweener)
+    self.tween = LuaClass.GuiGTween.To(LuaClass.Vector2.zero, LuaClass.Vector2(toX, toY), 1):SetTarget(self.component):OnUpdate(function(tweener)
         self:updatePos(tweener.value.vec2)
     end)    :OnComplete(function()
         self:onComplete()
@@ -79,6 +79,20 @@ function EmitComponent:onComplete()
     App.poolManager:pushComponent(self)
     if self.component.parent then
         LuaClass.GuiGTween.Kill(self.component)
+    end
+end
+
+function EmitComponent:clean()
+    if self.component.visible then
+        self.owner = nil
+        self.component.visible = false
+        App.poolManager:pushComponent(self)
+        if self.component.parent then
+            LuaClass.GuiGTween.Kill(self.component)
+        end
+        if self.tween then
+            self.tween:Kill(true)
+        end
     end
 end
 

@@ -526,9 +526,9 @@ namespace XLua.CSObjectWrap
             
 			    int gen_param_count = LuaAPI.lua_gettop(L);
             
-                if(gen_param_count == 2&& translator.Assignable<FairyGUI.GTweenCallback>(L, 2)) 
+                if(gen_param_count == 2&& translator.Assignable<FairyGUI.GTweenCallback1>(L, 2)) 
                 {
-                    FairyGUI.GTweenCallback _callback = translator.GetDelegate<FairyGUI.GTweenCallback>(L, 2);
+                    FairyGUI.GTweenCallback1 _callback = translator.GetDelegate<FairyGUI.GTweenCallback1>(L, 2);
                     
                         FairyGUI.GTweener gen_ret = gen_to_be_invoked.OnUpdate( _callback );
                         translator.Push(L, gen_ret);
@@ -537,9 +537,9 @@ namespace XLua.CSObjectWrap
                     
                     return 1;
                 }
-                if(gen_param_count == 2&& translator.Assignable<FairyGUI.GTweenCallback1>(L, 2)) 
+                if(gen_param_count == 2&& translator.Assignable<FairyGUI.GTweenCallback>(L, 2)) 
                 {
-                    FairyGUI.GTweenCallback1 _callback = translator.GetDelegate<FairyGUI.GTweenCallback1>(L, 2);
+                    FairyGUI.GTweenCallback _callback = translator.GetDelegate<FairyGUI.GTweenCallback>(L, 2);
                     
                         FairyGUI.GTweener gen_ret = gen_to_be_invoked.OnUpdate( _callback );
                         translator.Push(L, gen_ret);
