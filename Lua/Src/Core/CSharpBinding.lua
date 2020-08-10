@@ -98,7 +98,7 @@ LuaClass.GuiGPathPoint = CS.FairyGUI.GPathPoint
 ---@type FairyGUI.GTween
 LuaClass.GuiGTween = CS.FairyGUI.GTween
 LuaClass.EaseType = CS.FairyGUI.EaseType
-
+LuaClass.AutoSizeType = CS.FairyGUI.AutoSizeType
 
 
 --Unity
@@ -125,6 +125,7 @@ LuaClass.CsDebug = CS.UnityEngine.Debug
 LuaClass.Rect = CS.UnityEngine.Rect
 LuaClass.Sprite = CS.UnityEngine.Sprite
 LuaClass.TextMesh = CS.UnityEngine.TextMesh
+---@type UnityEngine.LayerMask
 LuaClass.LayerMask = CS.UnityEngine.LayerMask
 LuaClass.Animator = CS.UnityEngine.Animator
 LuaClass.Animation = CS.UnityEngine.Animation
@@ -136,6 +137,7 @@ LuaClass.KeyCode = CS.UnityEngine.KeyCode
 --- @type UnityEngine.Input
 LuaClass.Input = CS.UnityEngine.Input
 LuaClass.Renderer = CS.UnityEngine.Renderer
+LuaClass.RenderMode = CS.UnityEngine.RenderMode
 LuaClass.Camera = CS.UnityEngine.Camera
 --- @type UnityEngine.Screen
 LuaClass.Screen = CS.UnityEngine.Screen
@@ -188,6 +190,7 @@ LuaClass.ParticleSystem = CS.UnityEngine.ParticleSystem
 LuaClass.Material = CS.UnityEngine.Material
 LuaClass.StaticBatchingUtility = CS.UnityEngine.StaticBatchingUtility
 LuaClass.FogMode = CS.UnityEngine.FogMode
+---@type UnityEngine.SceneManagement.SceneManager
 LuaClass.SceneManager = CS.UnityEngine.SceneManagement.SceneManager
 LuaClass.SpriteRenderer = CS.UnityEngine.SpriteRenderer
 LuaClass.LineRenderer = CS.UnityEngine.LineRenderer

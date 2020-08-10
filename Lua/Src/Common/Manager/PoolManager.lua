@@ -10,7 +10,7 @@ local PoolManager = class("PoolManager", super)
 ---@param go UnityEngine.GameObject
 local init = function(go)
     if isValid(go) then
-        go.transform:Layer(LuaClass.GlobalConstant.MAP_LAYER)
+        go.transform.layer = LuaClass.GlobalConstant.MAP_LAYER
         go.transform:LocalPositionIdentity()
         go.gameObject:SetActive(true)
     end
@@ -21,7 +21,7 @@ function PoolManager:ctor()
     self._poolDict = {}
     self.poolObj = LuaClass.GameObject("PoolLayer")
     self.gameObject = LuaClass.GameObject("PoolManager")
-    self.gameObject:Layer(LuaClass.GlobalConstant.HIDE_LAYER)
+    self.gameObject.layer = LuaClass.GlobalConstant.HIDE_LAYER
     self.transform = self.gameObject.transform
 end
 
@@ -32,15 +32,12 @@ function PoolManager:popComponent(luaClass)
     if not pool then
         pool = LuaClass.ObjectPool(
                 function()
-                    local comp = luaClass:NewGameObject()
+                    local comp = luaClass()
                     return comp
-                end, init)
+                end)
         self._poolDict[luaClass.__cname] = pool
     end
     local comp = pool:get()
-    while not isValid(comp.gameObject) do
-        comp = pool:get()
-    end
     return comp
 end
 
@@ -51,8 +48,6 @@ function PoolManager:pushComponent(comp)
     end
     local pool = self._poolDict[comp.__cname]
     if pool then
-        comp.transform:SetParent(self.transform, false)
-        comp.gameObject:SetActive(false)
         pool:add(comp)
     end
 end

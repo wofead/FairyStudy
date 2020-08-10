@@ -72,6 +72,8 @@ function App:initManager()
     self.keyManager = LuaClass.KeyManager()
     ---@type TimerManager
     self.timeManager = LuaClass.TimerManager()
+    ---@type PoolManager
+    self.poolManager = LuaClass.PoolManager()
 end
 
 function App:initModule()
