@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
+using XLua;
 #if FAIRYGUI_TOLUA
 using LuaInterface;
 #endif
@@ -42,6 +44,35 @@ namespace FairyGUI
                 pi.extensionCreator = creator;
 
             packageItemExtensions[url] = creator;
+        }
+
+        public static void SetExtension(string url, System.Type baseType, LuaTable luaTable)
+        {
+            SetPackageItemExtension(url, () =>
+            {
+                GComponent gcom = (GComponent)Activator.CreateInstance(baseType);
+                if (baseType != null)
+                {
+                    LuaFunction func = luaTable.Get<LuaFunction>("create");
+                    if (func != null)
+                    {
+                        try
+                        {
+                            object[] table = func.Call(luaTable, gcom);
+                            LuaTable newLuaClass = (LuaTable)table[0];
+                            gcom.SetLuaTable(newLuaClass);
+                        }
+                        catch (Exception err)
+                        {
+                            Debug.LogError(err);
+                        }
+
+                        func.Dispose();
+                    }
+                }
+
+                return gcom;
+            });
         }
 
 #if FAIRYGUI_TOLUA

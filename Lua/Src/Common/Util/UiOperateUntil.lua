@@ -22,6 +22,8 @@ UiOperateUntil.UIEventType = {
     ["DragEnd"] = "onDragEnd",
     ---长按
     ["Action"] = "onAction",
+    ---长按移动
+    ["Move"] = "onMove",
     ---长按结束
     ["End"] = "onEnd",
     ---列表项目

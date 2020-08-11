@@ -1563,7 +1563,10 @@ namespace FairyGUI
                     if (itemRenderer != null)
                     {
                         for (int i = 0; i < value; i++)
-                            itemRenderer(i, GetChildAt(i));
+                        {
+                            GObject temp = GetChildAt(i);
+                            itemRenderer(i, temp);
+                        }
                     }
                 }
             }

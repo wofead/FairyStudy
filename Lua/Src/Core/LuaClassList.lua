@@ -60,6 +60,7 @@ LuaClassList =
 	emojiview                               = "Module.Emoji.EmojiView",
 	extensionmodule                         = "Module.Extension.ExtensionModule",
 	extensionview                           = "Module.Extension.ExtensionView",
+	mailitemview                            = "Module.Extension.MailItemView",
 	filtermodule                            = "Module.Filter.FilterModule",
 	filterview                              = "Module.Filter.FilterView",
 	gesturemodule                           = "Module.Gesture.GestureModule",

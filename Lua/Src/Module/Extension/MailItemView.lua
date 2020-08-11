@@ -6,8 +6,12 @@ local super = nil
 ---@class MailItemView
 local MailItemView = class("MailItemView", super)
 
-function MailItemView:ctor()
+function MailItemView:ctor(view)
+    self.view = view
+end
 
+function MailItemView:mailTest()
+    return 1,2,3
 end
 
 return MailItemView

@@ -51,6 +51,7 @@
 ---@field EmojiView  EmojiView   
 ---@field ExtensionModule  ExtensionModule   
 ---@field ExtensionView  ExtensionView   
+---@field MailItemView  MailItemView   
 ---@field FilterModule  FilterModule   
 ---@field FilterView  FilterView   
 ---@field GestureModule  GestureModule   

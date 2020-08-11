@@ -31,8 +31,9 @@ namespace XLua.CSObjectWrap
 			Utils.EndObjectRegister(type, L, translator, null, null,
 			    null, null, null);
 
-		    Utils.BeginClassRegister(type, L, __CreateInstance, 5, 0, 0);
+		    Utils.BeginClassRegister(type, L, __CreateInstance, 6, 0, 0);
 			Utils.RegisterFunc(L, Utils.CLS_IDX, "SetPackageItemExtension", _m_SetPackageItemExtension_xlua_st_);
+            Utils.RegisterFunc(L, Utils.CLS_IDX, "SetExtension", _m_SetExtension_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "SetLoaderExtension", _m_SetLoaderExtension_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "Clear", _m_Clear_xlua_st_);
             Utils.RegisterFunc(L, Utils.CLS_IDX, "NewObject", _m_NewObject_xlua_st_);
@@ -114,6 +115,34 @@ namespace XLua.CSObjectWrap
             }
             
             return LuaAPI.luaL_error(L, "invalid arguments to FairyGUI.UIObjectFactory.SetPackageItemExtension!");
+            
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_SetExtension_xlua_st_(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+            
+                
+                {
+                    string _url = LuaAPI.lua_tostring(L, 1);
+                    System.Type _baseType = (System.Type)translator.GetObject(L, 2, typeof(System.Type));
+                    XLua.LuaTable _luaTable = (XLua.LuaTable)translator.GetObject(L, 3, typeof(XLua.LuaTable));
+                    
+                    FairyGUI.UIObjectFactory.SetExtension( _url, _baseType, _luaTable );
+                    
+                    
+                    
+                    return 0;
+                }
+                
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
             
         }
         

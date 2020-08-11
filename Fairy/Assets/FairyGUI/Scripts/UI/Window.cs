@@ -382,11 +382,7 @@ namespace FairyGUI
                 _init();
         }
 
-        private LuaTable _luaTable;
-        public void SetLuaTable(LuaTable luaTable)
-        {
-            _luaTable = luaTable;
-        }
+        
 
         /// <summary>
         /// 
@@ -518,14 +514,14 @@ namespace FairyGUI
 
         private bool CallLua(string funcName)
         {
-            if (_luaTable != null)
+            if (luaTable != null)
             {
-                LuaFunction func = _luaTable.Get<LuaFunction>(funcName);
+                LuaFunction func = luaTable.Get<LuaFunction>(funcName);
                 if (func != null)
                 {
                     try
                     {
-                        func.Call(this._luaTable);
+                        func.Call(luaTable);
                     }
                     catch (Exception err)
                     {

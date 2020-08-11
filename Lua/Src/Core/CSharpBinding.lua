@@ -97,6 +97,18 @@ LuaClass.GuiVertexBuffer = CS.FairyGUI.VertexBuffer
 LuaClass.GuiGPathPoint = CS.FairyGUI.GPathPoint
 ---@type FairyGUI.GTween
 LuaClass.GuiGTween = CS.FairyGUI.GTween
+---@type FairyGUI.UIObjectFactory
+LuaClass.GuiUIObjectFactory = CS.FairyGUI.UIObjectFactory
+---@type FairyGUI.BlurFilter
+LuaClass.GuiBlurFilter = CS.FairyGUI.BlurFilter
+---@type FairyGUI.SwipeGesture
+LuaClass.GuiSwipeGesture = CS.FairyGUI.SwipeGesture
+---@type FairyGUI.LongPressGesture
+LuaClass.GuiLongPressGesture = CS.FairyGUI.LongPressGesture
+---@type FairyGUI.PinchGesture
+LuaClass.GuiPinchGesture = CS.FairyGUI.PinchGesture
+---@type FairyGUI.RotationGesture
+LuaClass.GuiRotationGesture = CS.FairyGUI.RotationGesture
 LuaClass.EaseType = CS.FairyGUI.EaseType
 LuaClass.AutoSizeType = CS.FairyGUI.AutoSizeType
 LuaClass.ScrollBarDisplayType = CS.FairyGUI.ScrollBarDisplayType
@@ -110,7 +122,10 @@ LuaClass.AnimationCurve = CS.UnityEngine.AnimationCurve
 LuaClass.Vector2 = CS.UnityEngine.Vector2
 --- @type UnityEngine.Vector3
 LuaClass.Vector3 = CS.UnityEngine.Vector3
+--- @type UnityEngine.Mathf
+LuaClass.Mathf = CS.UnityEngine.Mathf
 LuaClass.Quaternion = CS.UnityEngine.Quaternion
+LuaClass.Space = CS.UnityEngine.Space
 LuaClass.Object = CS.UnityEngine.Object
 --- @type UnityEngine.GameObject
 LuaClass.GameObject = CS.UnityEngine.GameObject

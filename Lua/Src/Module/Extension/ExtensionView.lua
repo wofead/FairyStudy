@@ -15,6 +15,7 @@ local eventDispatcher = module.eventDispatcher
 ExtensionView.uiConfig = LuaClass.UiConstant.Extension
 
 function ExtensionView:init()
+    LuaClass.GuiUIObjectFactory.SetExtension("ui://Extension/mailItem", typeof(LuaClass.GuiGButton), LuaClass.MailItemView)
     ---@type FairyGUI.GList
     local list = self.ui.mailList
     list.itemRenderer = handler(self, self.itemRenderer)
@@ -22,8 +23,15 @@ function ExtensionView:init()
     list.numItems = 10
 end
 
----@param item FairyGUI.GButton
+---@param item FairyGUI.GComponent
 function ExtensionView:itemRenderer(index, item)
+    --local view = item.luaTable.view
+    --view.title = "Mail title here"
+    --view:GetChild("timeText").text = "5 Nov 2015 16:24:33"
+    --view:GetController("IsRead").selectedIndex = index % 3 == 1 and 1 or 0
+    --view:GetController("c1").selectedIndex = index % 2 == 1 and 1 or 0
+    --view.visible = false
+    --view:GetTransition("t0"):Play(1, index * 0.2, nil)
     item.title = "Mail title here"
     item:GetChild("timeText").text = "5 Nov 2015 16:24:33"
     item:GetController("IsRead").selectedIndex = index % 3 == 1 and 1 or 0

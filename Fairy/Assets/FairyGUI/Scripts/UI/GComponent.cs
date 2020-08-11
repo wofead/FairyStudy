@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using FairyGUI.Utils;
+
+using XLua;
 #if FAIRYGUI_TOLUA
 using LuaInterface;
 #endif
@@ -1630,6 +1632,14 @@ namespace FairyGUI
             for (int i = 0; i < cnt; ++i)
                 _transitions[i].OnOwnerRemovedFromStage();
         }
+
+
+        public LuaTable luaTable;
+        public void SetLuaTable(LuaTable luaTable)
+        {
+            this.luaTable = luaTable;
+        }
+
 
 #if FAIRYGUI_TOLUA
         internal LuaTable _peerTable;
