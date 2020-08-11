@@ -40,6 +40,8 @@ UiOperateUntil.UIEventType = {
     ["Submit"] = "onSubmit",
     ---富文本链接点击事件
     ["ClickLink"] = "onClickLink",
+    ---输入框的键盘点击事件
+    ["KeyDown"] = "onKeyDown",
 }
 
 function UiOperateUntil.registerUIEvent(target, eventType, funCall)

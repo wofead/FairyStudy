@@ -99,6 +99,8 @@ LuaClass.GuiGPathPoint = CS.FairyGUI.GPathPoint
 LuaClass.GuiGTween = CS.FairyGUI.GTween
 LuaClass.EaseType = CS.FairyGUI.EaseType
 LuaClass.AutoSizeType = CS.FairyGUI.AutoSizeType
+LuaClass.ScrollBarDisplayType = CS.FairyGUI.ScrollBarDisplayType
+LuaClass.PopupDirection = CS.FairyGUI.PopupDirection
 
 
 --Unity
