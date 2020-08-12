@@ -25,6 +25,8 @@ LuaClass.GuiStage = CS.FairyGUI.Stage
 LuaClass.GuiController = CS.FairyGUI.Controller
 ---@type FairyGUI.GObject
 LuaClass.GuiGObject = CS.FairyGUI.GObject
+---@type FairyGUI.GoWrapper
+LuaClass.GuiGoWrapper = CS.FairyGUI.GoWrapper
 ---@type FairyGUI.GGraph
 LuaClass.GuiGGraph = CS.FairyGUI.GGraph
 ---@type FairyGUI.GGroup
@@ -133,6 +135,10 @@ LuaClass.GameObject = CS.UnityEngine.GameObject
 LuaClass.Color = CS.UnityEngine.Color
 --- @type UnityEngine.Time
 LuaClass.Time = CS.UnityEngine.Time
+--- @type UnityEngine.RaycastHit
+LuaClass.RaycastHit = CS.UnityEngine.RaycastHit
+--- @type UnityEngine.Physics
+LuaClass.Physics = CS.UnityEngine.Physics
 --- @type UnityEngine.Application
 LuaClass.Application = CS.UnityEngine.Application
 LuaClass.RuntimePlatform = CS.UnityEngine.RuntimePlatform

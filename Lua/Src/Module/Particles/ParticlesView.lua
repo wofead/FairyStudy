@@ -14,6 +14,25 @@ local eventDispatcher = module.eventDispatcher
 ParticlesView.uiConfig = LuaClass.UiConstant.Particles
 
 function ParticlesView:init()
+    local prefab = LuaClass.Resources.Load("npc")
+    ---@type UnityEngine.GameObject
+    local go = LuaClass.Object.Instantiate(prefab)
+    go.transform.localPosition = LuaClass.Vector3(61, -89, 1000)
+    go.transform.localScale = LuaClass.Vector3(180, 180, 180)
+    go.transform.localEulerAngles = LuaClass.Vector3(0, 100, 1000)
+    self.ui.holder:SetNativeObject(LuaClass.GuiGoWrapper(go))
+    self.ui.c0.draggable = true
+    self.ui.c1.draggable = true
+    go = LuaClass.Object.Instantiate(prefab)
+    go.transform.localPosition = LuaClass.Vector3(61, -89, 1000)
+    go.transform.localScale = LuaClass.Vector3(180, 180, 180)
+    go.transform.localEulerAngles = LuaClass.Vector3(0, 100, 1000)
+    self.ui.c0:GetChild("effect"):SetNativeObject(LuaClass.GuiGoWrapper(go))
+    go = LuaClass.Object.Instantiate(prefab)
+    go.transform.localPosition = LuaClass.Vector3(61, -89, 1000)
+    go.transform.localScale = LuaClass.Vector3(180, 180, 180)
+    go.transform.localEulerAngles = LuaClass.Vector3(0, 100, 1000)
+    self.ui.c1:GetChild("effect"):SetNativeObject(LuaClass.GuiGoWrapper(go))
 end
 
 function ParticlesView:onEnter()

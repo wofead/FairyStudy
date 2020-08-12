@@ -14,6 +14,25 @@ local eventDispatcher = module.eventDispatcher
 PerspectiveView.uiConfig = LuaClass.UiConstant.Perspective
 
 function PerspectiveView:init()
+    ---@type FairyGUI.GComponent
+    local uiPanel1 = LuaClass.GuiUIPackage.CreateObject("Perspective", "Panel")
+    ---@type FairyGUI.GComponent
+    local uiPanel2 = LuaClass.GuiUIPackage.CreateObject("Perspective", "Panel2")
+    ---@type FairyGUI.GList
+    local list = uiPanel2:GetChild("mailList")
+    list:SetVirtual()
+    list.itemRenderer = function(index, obj)
+        obj.text = index .. "Mail title here"
+    end
+    list.numItems = 20
+    self.view:AddChild(uiPanel1)
+    self.view:AddChild(uiPanel2)
+    uiPanel2.container.gameObject.transform.localPosition = LuaClass.Vector3(140, 9, 313)
+    --uiPanel2.container.gameObject.transform.localRotation = LuaClass.Vector3(0, -40, 0)
+    uiPanel1.container.gameObject.transform.localPosition = LuaClass.Vector3(340, 4.8, 313)
+    --uiPanel1.container.gameObject.transform.localRotation = LuaClass.Vector3(0, 40, 0)
+    --uiPanel2.container.gameObject.layer = "Default"
+    --uiPanel1.container.gameObject.layer = "Default"
 end
 
 function PerspectiveView:onEnter()

@@ -95,6 +95,7 @@
 ---@field VirtualListModule  VirtualListModule   
 ---@field VirtualListView  VirtualListView   
 ---@field BagWindow  BagWindow   
+---@field WindowC  WindowC   
 ---@field WindowsA  WindowsA   
 ---@field WindowsB  WindowsB   
 local LuaClass = {}

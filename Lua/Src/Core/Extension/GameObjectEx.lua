@@ -60,6 +60,7 @@ function GameObjectEx:removeLuaComponent(module)
     end
 end
 
+---@return FairyGUI.UIPanel
 function GameObjectEx:addUIToSelf(packageName, cmpname)
     local panel = self:AddComponent(typeof(LuaClass.GuiUIPanel))
     panel.packageName = packageName

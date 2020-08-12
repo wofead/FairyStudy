@@ -14,6 +14,36 @@ local eventDispatcher = module.eventDispatcher
 LoopListView.uiConfig = LuaClass.UiConstant.LoopList
 
 function LoopListView:init()
+    ---@type FairyGUI.GList
+    local list = self.ui.list
+    list:SetVirtualAndLoop()
+
+    list.itemRenderer = handler(self, self.renderListItem)
+    list.numItems = 5
+    list.scrollPane.onScroll:Add(handler(self, self.doSpecialEffect))
+    self.list = list
+
+end
+
+function LoopListView:doSpecialEffect()
+    local midX = self.list.scrollPane.posX + self.list.viewWidth / 2
+    local cnt = self.list.numChildren
+    for i = 1, cnt do
+        local obj = self.list:GetChildAt(i - 1)
+        local dist = math.abs(midX - obj.x - obj.width / 2)
+        if dist > obj.width then
+            obj:SetScale(1, 1)
+        else
+            local ss = 1 + (1 - dist / obj.width) * 0.24
+            obj:SetScale(ss, ss)
+        end
+    end
+    self.ui.n3.text = "" .. ((self.list:GetFirstChildInView() + 1) % self.list.numItems)
+end
+
+function LoopListView:renderListItem(index, obj)
+    obj:SetPivot(0.5, 0.5)
+    obj.icon = LuaClass.GuiUIPackage.GetItemURL("LoopList", "n" .. (index + 1))
 end
 
 function LoopListView:onEnter()

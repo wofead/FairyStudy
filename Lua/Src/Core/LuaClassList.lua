@@ -104,6 +104,7 @@ LuaClassList =
 	virtuallistmodule                       = "Module.VirtualList.VirtualListModule",
 	virtuallistview                         = "Module.VirtualList.VirtualListView",
 	bagwindow                               = "Module.Windows.BagWindow",
+	windowc                                 = "Module.Windows.WindowC",
 	windowsa                                = "Module.Windows.WindowsA",
 	windowsb                                = "Module.Windows.WindowsB",
 

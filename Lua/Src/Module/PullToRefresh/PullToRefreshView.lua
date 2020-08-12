@@ -14,6 +14,41 @@ local eventDispatcher = module.eventDispatcher
 PullToRefreshView.uiConfig = LuaClass.UiConstant.PullToRefresh
 
 function PullToRefreshView:init()
+    ---@type FairyGUI.GList
+    local list1 = self.ui.list1
+    list1.itemRenderer = handler(self, self.renderItemList1)
+    list1:SetVirtual()
+    list1.numItems = 1
+    list1.scrollPane.onPullDownRelease:Add(handler(self, self.onPullDownToRefresh))
+    self.list1 = list1
+
+    ---@type FairyGUI.GList
+    local list2 = self.ui.list2
+    list2.itemRenderer = handler(self, self.renderItemList2)
+    list2:SetVirtual()
+    list2.numItems = 1
+    list2.scrollPane.onPullDownRelease:Add(handler(self, self.onPullUpToRefresh))
+    self.list2 = list2
+end
+
+function PullToRefreshView:renderItemList1(index, obj)
+    obj.title = "Item " .. (self.list1.numItems - index - 1)
+end
+
+function PullToRefreshView:renderItemList2(index, obj)
+    obj.title = "Item " .. index
+end
+
+function PullToRefreshView:onPullDownToRefresh()
+    local header = self.list1.scrollPane.header
+    if header.ReadyToRefresh then
+        header:SetRefreshStatus(2)
+        self.list1.scrollPane:LockHeader(header.sourceHeight)
+        self.timer1 = App.timeManager:add(2000, function()
+        end, 2000, function()
+
+        end)
+    end
 end
 
 function PullToRefreshView:onEnter()

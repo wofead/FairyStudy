@@ -14,6 +14,9 @@ local eventDispatcher = module.eventDispatcher
 HitTestView.uiConfig = LuaClass.UiConstant.HitTest
 
 function HitTestView:init()
+
+    self.cube = LuaClass.GameObject.Find("Cube").transform
+
 end
 
 function HitTestView:onEnter()
@@ -26,6 +29,21 @@ function HitTestView:registerEvent()
     local eventType = LuaClass.UiOperateUntil.UIEventType
     local registerEventFunc = LuaClass.UiOperateUntil.registerUIEvent
     App.keyManager:registerPressHandler(LuaClass.KeyCode.Escape, "Escape", handler(self, self.closeView))
+
+    LuaClass.GuiStage.inst.onTouchBegin:Add(handler(self, self.onTouchBegin))
+end
+
+function HitTestView:onTouchBegin()
+    if not LuaClass.GuiStage.isTouchOnUI then
+        --LuaClass.RaycastHit
+        local hit LuaClass.RaycastHit()
+        local ray = LuaClass.Camera.main:ScreenPointToRay(LuaClass.Vector3(LuaClass.GuiStage.inst.touchPosition.x, LuaClass.Screen.height - LuaClass.GuiStage.inst.touchPosition.y, 0))
+        if LuaClass.Physics.Raycast(ray) then
+            --if hit.transform == self.cube then
+                printJow("HitTestView", "Hit the cube")
+            --end
+        end
+    end
 end
 
 function HitTestView:unRegisterEvent()

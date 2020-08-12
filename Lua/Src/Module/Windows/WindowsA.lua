@@ -19,7 +19,6 @@ function WindowsA:OnInit()
 end
 
 function WindowsA:OnShown()
-    self.window:GetChild()
     ---@type FairyGUI.GList
     local list = self.window.contentPane:GetChild("n6")
     list:RemoveChildrenToPool()

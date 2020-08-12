@@ -14,6 +14,14 @@ local eventDispatcher = module.eventDispatcher
 ModelView.uiConfig = LuaClass.UiConstant.Model
 
 function ModelView:init()
+    local prefab = LuaClass.Resources.Load("npc")
+    ---@type UnityEngine.GameObject
+    local go = LuaClass.Object.Instantiate(prefab)
+    go.transform.localPosition = LuaClass.Vector3(61, -89, 1000)
+    go.transform.localScale = LuaClass.Vector3(180, 180, 180)
+    go.transform.localEulerAngles = LuaClass.Vector3(0, 100, 1000)
+    self.ui.holder:SetNativeObject(LuaClass.GuiGoWrapper(go))
+
 end
 
 function ModelView:onEnter()

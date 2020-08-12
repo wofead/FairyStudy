@@ -14,11 +14,18 @@ local eventDispatcher = module.eventDispatcher
 ModalWaitingView.uiConfig = LuaClass.UiConstant.ModalWaiting
 
 function ModalWaitingView:init()
+    LuaClass.GuiUIConfig.globalModalWaiting = "ui://ModalWaiting/GlobalModalWaiting"
+    LuaClass.GuiUIConfig.windowModalWaiting = "ui://ModalWaiting/WindowModalWaiting"
 end
 
 function ModalWaitingView:onEnter()
     super.onEnter(self)
     self:registerEvent()
+    LuaClass.GuiGRoot.inst:ShowModalWait()
+    self.timer = App.timeManager:add(3000, function()
+    end, 3000, function()
+        LuaClass.GuiGRoot.inst:CloseModalWait()
+    end)
 end
 
 function ModalWaitingView:registerEvent()
@@ -26,6 +33,17 @@ function ModalWaitingView:registerEvent()
     local eventType = LuaClass.UiOperateUntil.UIEventType
     local registerEventFunc = LuaClass.UiOperateUntil.registerUIEvent
     App.keyManager:registerPressHandler(LuaClass.KeyCode.Escape, "Escape", handler(self, self.closeView))
+    registerEventFunc(self.ui.n0, eventType.Click, handler(self, self.showWindow))
+end
+
+function ModalWaitingView:showWindow()
+    if not self.window then
+        local view = LuaClass.GuiWindow()
+        ---@type WindowC
+        local window = LuaClass.WindowC(view)
+        self.window = window
+    end
+    self.window:show()
 end
 
 function ModalWaitingView:unRegisterEvent()
@@ -33,6 +51,9 @@ function ModalWaitingView:unRegisterEvent()
 end
 
 function ModalWaitingView:closeView()
+    if self.timer then
+        App.timeManager:remove(self.timer)
+    end
     module:closeView()
 end
 
