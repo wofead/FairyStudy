@@ -14,6 +14,15 @@ local eventDispatcher = module.eventDispatcher
 RenderTextureView.uiConfig = LuaClass.UiConstant.RenderTexture
 
 function RenderTextureView:init()
+    self.ui.n2.onClick:Add(
+            function()
+                if not self.window then
+                    local view = LuaClass.GuiWindow()
+                    ---@type WindowD
+                    self.window = LuaClass.WindowD(view)
+                end
+                self.window:show()
+            end)
 end
 
 function RenderTextureView:onEnter()
