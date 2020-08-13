@@ -15,6 +15,7 @@ local eventDispatcher = module.eventDispatcher
 ExtensionView.uiConfig = LuaClass.UiConstant.Extension
 
 function ExtensionView:init()
+    --可以通过AddLuaComponent来实现
     LuaClass.GuiUIObjectFactory.SetExtension("ui://Extension/mailItem", typeof(LuaClass.GuiGButton), LuaClass.MailItemView)
     ---@type FairyGUI.GList
     local list = self.ui.mailList

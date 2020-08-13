@@ -14,6 +14,8 @@ local eventDispatcher = module.eventDispatcher
 TurnCardView.uiConfig = LuaClass.UiConstant.TurnCard
 
 function TurnCardView:init()
+    self.c0 = self.ui.c0.displayObject.gameObject:addLuaComponent(LuaClass.CardItemView, self.ui.c0)
+    self.c1 = self.ui.c1.displayObject.gameObject:addLuaComponent(LuaClass.CardItemView, self.ui.c1)
 end
 
 function TurnCardView:onEnter()

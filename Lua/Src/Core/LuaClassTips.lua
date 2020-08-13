@@ -18,6 +18,7 @@
 ---@field UiManager  UiManager   
 ---@field BaseModule  BaseModule   
 ---@field BaseUi  BaseUi   
+---@field UiList  UiList   
 ---@field AssetPathUtilEx  AssetPathUtilEx   
 ---@field LogUtil  LogUtil   
 ---@field ObjectPool  ObjectPool   
@@ -87,6 +88,7 @@
 ---@field TransitionView  TransitionView   
 ---@field TreeViewModule  TreeViewModule   
 ---@field TreeViewView  TreeViewView   
+---@field CardItemView  CardItemView   
 ---@field TurnCardModule  TurnCardModule   
 ---@field TurnCardView  TurnCardView   
 ---@field TurnPageModule  TurnPageModule   
@@ -95,9 +97,9 @@
 ---@field TypingEffectView  TypingEffectView   
 ---@field VirtualListModule  VirtualListModule   
 ---@field VirtualListView  VirtualListView   
----@field BagWindow  BagWindow
----@field WindowC  WindowC
----@field WindowD  WindowD
+---@field BagWindow  BagWindow   
+---@field WindowC  WindowC   
+---@field WindowD  WindowD   
 ---@field WindowsA  WindowsA   
 ---@field WindowsB  WindowsB   
 local LuaClass = {}

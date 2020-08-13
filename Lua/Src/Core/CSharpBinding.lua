@@ -99,6 +99,8 @@ LuaClass.GuiVertexBuffer = CS.FairyGUI.VertexBuffer
 LuaClass.GuiGPathPoint = CS.FairyGUI.GPathPoint
 ---@type FairyGUI.GTween
 LuaClass.GuiGTween = CS.FairyGUI.GTween
+---@type FairyGUI.GTreeNode
+LuaClass.GuiGTreeNode = CS.FairyGUI.GTreeNode
 ---@type FairyGUI.UIObjectFactory
 LuaClass.GuiUIObjectFactory = CS.FairyGUI.UIObjectFactory
 ---@type FairyGUI.BlurFilter
