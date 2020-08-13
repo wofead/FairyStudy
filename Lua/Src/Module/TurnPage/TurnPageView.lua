@@ -14,6 +14,49 @@ local eventDispatcher = module.eventDispatcher
 TurnPageView.uiConfig = LuaClass.UiConstant.TurnPage
 
 function TurnPageView:init()
+    ---@type BookView
+    local book = self.ui.book.displayObject.gameObject:addLuaComponent(LuaClass.BookView, self.ui.book)
+    self.book = book
+
+    book:setSoftShadowResource("ui://TurnPage/shadow_soft")
+    book.pageRenderer = handler(self, self.renderPage)
+    book.pageCount = 20
+    book.currentPage = 0
+    book:showCover(0, false)
+    book.onTurnComplete = handler(self, self.onTurnComplete)
+
+    LuaClass.GuiGearBase.disableAllTweenEffect = true
+    self.bookPosContr = self.view:GetController("bookPos")
+    self.bookPosContr.selectedIndex = 1
+    LuaClass.GuiGearBase.disableAllTweenEffect = false
+
+    ---@type FairyGUI.GSlider
+    local slider = self.ui.pageSlide
+    self.slider = slider
+    slider.max = 19
+    slider.value = 0
+    slider.onGripTouchEnd:Add(
+            function()
+                self.book:turnTo(slider.value)
+            end)
+    -----@type BookPageView
+    --self.page = self.ui.c1.displayObject.gameObject:addLuaComponent(LuaClass.CardItemView, self.ui.c1)
+end
+
+function TurnPageView:onTurnComplete()
+    self.slider.value = self.book.currentPage
+    if self.book:isCoverShowing(0) then
+        self.bookPosContr.selectedIndex = 1
+    elseif self.book:isCoverShowing(1) then
+        self.bookPosContr.selectedIndex = 2
+    else
+        self.bookPosContr.selectedIndex = 0
+    end
+end
+
+---@param page BookPageView
+function TurnPageView:renderPage(index, page)
+    page:render(index)
 end
 
 function TurnPageView:onEnter()
@@ -26,6 +69,12 @@ function TurnPageView:registerEvent()
     local eventType = LuaClass.UiOperateUntil.UIEventType
     local registerEventFunc = LuaClass.UiOperateUntil.registerUIEvent
     App.keyManager:registerPressHandler(LuaClass.KeyCode.Escape, "Escape", handler(self, self.closeView))
+    registerEventFunc(ui.btnNext, eventType.Click, function()
+        self.book:turnNext()
+    end)
+    registerEventFunc(ui.btnPrev, eventType.Click, function()
+        self.book:TurnPrevious()
+    end)
 end
 
 function TurnPageView:unRegisterEvent()

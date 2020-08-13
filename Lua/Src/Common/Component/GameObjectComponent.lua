@@ -21,7 +21,7 @@ function GameObjectComponent:add(module, ...)
         print("Same GameObjectComponent can't be added twice" .. module.__cname .. debug.traceback())
         return isExist
     end
-    local component = module(self.gameObject)
+    local component = module(self.gameObject, ...)
     table.insert(self.components, component)
     return component
 end

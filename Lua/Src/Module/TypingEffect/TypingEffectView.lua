@@ -14,6 +14,20 @@ local eventDispatcher = module.eventDispatcher
 TypingEffectView.uiConfig = LuaClass.UiConstant.TypingEffect
 
 function TypingEffectView:init()
+    local t1 = LuaClass.GuiTypingEffect(self.ui.n2)
+    t1:Start()
+    LuaClass.GuiTimers.inst:StartCoroutine(t1:Print(0.05))
+    --LuaClass.GuiTimers.inst:StartCoroutine(t1:Print(0.05))
+    local t2 = LuaClass.GuiTypingEffect(self.ui.n3)
+    self.t2 = t2
+    t2:Start()
+    self.timer = App.timeManager:add(50, handler(self, self.printText), -1, nil)
+end
+
+function TypingEffectView:printText(param)
+    if not self.t2:Print() then
+        App.timeManager:remove(self.timer)
+    end
 end
 
 function TypingEffectView:onEnter()

@@ -15,9 +15,9 @@ function UiList.AddToGuiList(guiList, itemComponent)
 end
 
 ---@param gameObject UnityEngine.GameObject 
-function UiList:ctor(gameObject)
+function UiList:ctor(gameObject, guiList, itemComponent)
     super.ctor(self, gameObject)
-    self:init()
+    self:init(guiList, itemComponent)
 end
 
 ---@param guiList FairyGUI.GList

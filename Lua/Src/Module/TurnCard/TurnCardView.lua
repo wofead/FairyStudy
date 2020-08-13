@@ -14,8 +14,11 @@ local eventDispatcher = module.eventDispatcher
 TurnCardView.uiConfig = LuaClass.UiConstant.TurnCard
 
 function TurnCardView:init()
+    ---@type CardItemView
     self.c0 = self.ui.c0.displayObject.gameObject:addLuaComponent(LuaClass.CardItemView, self.ui.c0)
+    ---@type CardItemView
     self.c1 = self.ui.c1.displayObject.gameObject:addLuaComponent(LuaClass.CardItemView, self.ui.c1)
+    self.c1:setPerspective()
 end
 
 function TurnCardView:onEnter()
@@ -28,6 +31,15 @@ function TurnCardView:registerEvent()
     local eventType = LuaClass.UiOperateUntil.UIEventType
     local registerEventFunc = LuaClass.UiOperateUntil.registerUIEvent
     App.keyManager:registerPressHandler(LuaClass.KeyCode.Escape, "Escape", handler(self, self.closeView))
+    registerEventFunc(ui.c0, eventType.Click, handler(self, self.onClickCard))
+    registerEventFunc(ui.c1, eventType.Click, handler(self, self.onClickCard))
+end
+
+function TurnCardView:onClickCard(context)
+    local obj = context.sender.displayObject.gameObject
+    ---@type CardItemView
+    local cardItemView = obj:getLuaComponent(LuaClass.CardItemView)
+    cardItemView:turn()
 end
 
 function TurnCardView:unRegisterEvent()

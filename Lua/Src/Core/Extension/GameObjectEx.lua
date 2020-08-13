@@ -5,6 +5,7 @@
 ---@type UnityEngine.GameObject
 local GameObjectEx = LuaClass.Extension(LuaClass.GameObject)
 
+---@return BaseLuaComponent
 function GameObjectEx:addLuaComponent(module, ...)
     if self.luaComponent == nil then
         self.luaComponent = 0 --此为关键步骤，初始化C#对象的Lua绑定

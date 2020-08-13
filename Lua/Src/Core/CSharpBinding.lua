@@ -82,6 +82,10 @@ LuaClass.GuiUIPanel = CS.FairyGUI.UIPanel
 LuaClass.GuiUIPainter = CS.FairyGUI.UIPainter
 ---@type FairyGUI.TypingEffect
 LuaClass.GuiTypingEffect = CS.FairyGUI.TypingEffect
+---@type FairyGUI.Timers
+LuaClass.GuiTimers = CS.FairyGUI.Timers
+---@type FairyGUI.GearBase
+LuaClass.GuiGearBase = CS.FairyGUI.GearBase
 ---@type FairyGUI.UIConfig
 LuaClass.GuiUIConfig = CS.FairyGUI.UIConfig
 LuaClass.GuiPopupDirection = CS.FairyGUI.PopupDirection
@@ -97,6 +101,10 @@ LuaClass.GuiLineMesh = CS.FairyGUI.LineMesh
 LuaClass.GuiVertexBuffer = CS.FairyGUI.VertexBuffer
 ---@type FairyGUI.GPathPoint
 LuaClass.GuiGPathPoint = CS.FairyGUI.GPathPoint
+---@type FairyGUI.VertexBuffer
+LuaClass.GuiVertexBuffer = CS.FairyGUI.VertexBuffer
+---@type FairyGUI.GPath
+LuaClass.GuiGPath = CS.FairyGUI.GPath
 ---@type FairyGUI.GTween
 LuaClass.GuiGTween = CS.FairyGUI.GTween
 ---@type FairyGUI.GTreeNode

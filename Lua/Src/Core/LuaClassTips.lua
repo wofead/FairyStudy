@@ -91,6 +91,8 @@
 ---@field CardItemView  CardItemView   
 ---@field TurnCardModule  TurnCardModule   
 ---@field TurnCardView  TurnCardView   
+---@field BookPageView  BookPageView   
+---@field BookView  BookView   
 ---@field TurnPageModule  TurnPageModule   
 ---@field TurnPageView  TurnPageView   
 ---@field TypingEffectModule  TypingEffectModule   

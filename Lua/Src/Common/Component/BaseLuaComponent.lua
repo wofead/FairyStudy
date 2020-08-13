@@ -7,6 +7,7 @@ local super = nil
 ---@class BaseLuaComponent
 local BaseLuaComponent = class("BaseLuaComponent", super)
 
+
 function BaseLuaComponent:NewGameObject(...)
     ---@type UnityEngine.GameObject
     local go = LuaClass.GameObject(self.__cname)

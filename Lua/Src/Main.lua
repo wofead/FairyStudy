@@ -5,13 +5,13 @@
 ---
 ---Des Lua主要入口
 ---
---package.cpath = package.cpath .. ';C:/Users/houn/AppData/Roaming/JetBrains/IntelliJIdea2020.1/plugins/intellij-emmylua/classes/debugger/emmy/windows/x64/?.dll'
---local dbg = require('emmy_core')
---dbg.tcpListen('localhost', 9966)
-
-package.cpath = package.cpath .. ';C:/Users/user3/.IntelliJIdea2019.2/config/plugins/intellij-emmylua/classes/debugger/emmy/windows/x64/?.dll'
+package.cpath = package.cpath .. ';C:/Users/houn/AppData/Roaming/JetBrains/IntelliJIdea2020.1/plugins/intellij-emmylua/classes/debugger/emmy/windows/x64/?.dll'
 local dbg = require('emmy_core')
 dbg.tcpListen('localhost', 9966)
+
+--package.cpath = package.cpath .. ';C:/Users/user3/.IntelliJIdea2019.2/config/plugins/intellij-emmylua/classes/debugger/emmy/windows/x64/?.dll'
+--local dbg = require('emmy_core')
+--dbg.tcpListen('localhost', 9966)
 function __G__UPDATE__(deltaTime)
     if isValid(App) then
         App:update(deltaTime)

@@ -14,6 +14,12 @@ local eventDispatcher = module.eventDispatcher
 VirtualListView.uiConfig = LuaClass.UiConstant.VirtualList
 
 function VirtualListView:init()
+    self.uiList = LuaClass.UiList.AddToGuiList(self.ui.mailList, LuaClass.MailItemView)
+    local dataList = {}
+    for i = 1, 1000 do
+        table.insert(dataList, i)
+    end
+    self.uiList:setDataSource(dataList)
 end
 
 function VirtualListView:onEnter()
@@ -26,6 +32,15 @@ function VirtualListView:registerEvent()
     local eventType = LuaClass.UiOperateUntil.UIEventType
     local registerEventFunc = LuaClass.UiOperateUntil.registerUIEvent
     App.keyManager:registerPressHandler(LuaClass.KeyCode.Escape, "Escape", handler(self, self.closeView))
+    registerEventFunc(ui.n6, eventType.Click, function()
+        self.uiList.guiList:AddSelection(500, true)
+    end)
+    registerEventFunc(ui.n7, eventType.Click, function()
+        self.uiList.guiList.scrollPane:ScrollTop()
+    end)
+    registerEventFunc(ui.n8, eventType.Click, function()
+        self.uiList.guiList.scrollPane:ScrollBottom()
+    end)
 end
 
 function VirtualListView:unRegisterEvent()
