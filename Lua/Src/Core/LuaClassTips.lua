@@ -78,6 +78,7 @@
 ---@field PerspectiveView  PerspectiveView   
 ---@field PullToRefreshModule  PullToRefreshModule   
 ---@field PullToRefreshView  PullToRefreshView   
+---@field RenderImage  RenderImage   
 ---@field RenderTextureModule  RenderTextureModule   
 ---@field RenderTextureView  RenderTextureView   
 ---@field ScrollPaneModule  ScrollPaneModule   
@@ -94,8 +95,9 @@
 ---@field TypingEffectView  TypingEffectView   
 ---@field VirtualListModule  VirtualListModule   
 ---@field VirtualListView  VirtualListView   
----@field BagWindow  BagWindow   
----@field WindowC  WindowC   
+---@field BagWindow  BagWindow
+---@field WindowC  WindowC
+---@field WindowD  WindowD
 ---@field WindowsA  WindowsA   
 ---@field WindowsB  WindowsB   
 local LuaClass = {}

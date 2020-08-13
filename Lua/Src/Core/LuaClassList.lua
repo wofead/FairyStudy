@@ -87,6 +87,7 @@ LuaClassList =
 	perspectiveview                         = "Module.Perspective.PerspectiveView",
 	pulltorefreshmodule                     = "Module.PullToRefresh.PullToRefreshModule",
 	pulltorefreshview                       = "Module.PullToRefresh.PullToRefreshView",
+	renderimage                             = "Module.RenderTexture.RenderImage",
 	rendertexturemodule                     = "Module.RenderTexture.RenderTextureModule",
 	rendertextureview                       = "Module.RenderTexture.RenderTextureView",
 	scrollpanemodule                        = "Module.ScrollPane.ScrollPaneModule",
@@ -105,6 +106,7 @@ LuaClassList =
 	virtuallistview                         = "Module.VirtualList.VirtualListView",
 	bagwindow                               = "Module.Windows.BagWindow",
 	windowc                                 = "Module.Windows.WindowC",
+	windowd                                 = "Module.Windows.WindowD",
 	windowsa                                = "Module.Windows.WindowsA",
 	windowsb                                = "Module.Windows.WindowsB",
 

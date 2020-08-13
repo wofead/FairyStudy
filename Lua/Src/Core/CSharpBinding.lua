@@ -115,6 +115,10 @@ LuaClass.EaseType = CS.FairyGUI.EaseType
 LuaClass.AutoSizeType = CS.FairyGUI.AutoSizeType
 LuaClass.ScrollBarDisplayType = CS.FairyGUI.ScrollBarDisplayType
 LuaClass.PopupDirection = CS.FairyGUI.PopupDirection
+LuaClass.BlendMode = CS.FairyGUI.BlendMode
+LuaClass.ToolSet = CS.FairyGUI.Utils.ToolSet
+
+
 
 
 --Unity
@@ -201,6 +205,8 @@ LuaClass.PlayerPrefs = CS.UnityEngine.PlayerPrefs
 LuaClass.EventSystems = CS.UnityEngine.EventSystems
 LuaClass.GUIUtility = CS.UnityEngine.GUIUtility
 LuaClass.RenderTexture = CS.UnityEngine.RenderTexture
+LuaClass.UFilterModule = CS.UnityEngine.FilterMode
+LuaClass.GL = CS.UnityEngine.GL
 LuaClass.Texture2D = CS.UnityEngine.Texture2D
 LuaClass.TextureFormat = CS.UnityEngine.TextureFormat
 LuaClass.RenderTextureFormat = CS.UnityEngine.RenderTextureFormat
@@ -209,10 +215,13 @@ LuaClass.Shader = CS.UnityEngine.Shader
 LuaClass.EventSystem = CS.UnityEngine.EventSystem
 LuaClass.RenderSettings = CS.UnityEngine.RenderSettings
 LuaClass.MeshFilter = CS.UnityEngine.MeshFilter
+LuaClass.ShadowCastingMode = CS.UnityEngine.Rendering.ShadowCastingMode
+LuaClass.MeshRenderer = CS.UnityEngine.MeshRenderer
 LuaClass.ParticleSystem = CS.UnityEngine.ParticleSystem
 LuaClass.Material = CS.UnityEngine.Material
 LuaClass.StaticBatchingUtility = CS.UnityEngine.StaticBatchingUtility
 LuaClass.FogMode = CS.UnityEngine.FogMode
+LuaClass.RenderTextureFormat = CS.UnityEngine.RenderTextureFormat
 ---@type UnityEngine.SceneManagement.SceneManager
 LuaClass.SceneManager = CS.UnityEngine.SceneManagement.SceneManager
 LuaClass.SpriteRenderer = CS.UnityEngine.SpriteRenderer
