@@ -5,7 +5,7 @@
 local LuaClass = LuaClass
 local super = LuaClass.BaseLuaComponent
 ---@class BookView:BaseLuaComponent
-local BookView = class("BookPageView", super)
+local BookView = class("BookView", super)
 
 local Paper = { Soft = 0, Hard = 1 }
 
@@ -32,12 +32,12 @@ function BookView:ctor(gameObject, comp)
     self.pagesContainer:RemoveChild(obj1)
     self.pagesContainer:RemoveChild(obj2)
     ---@type FairyGUI.GComponent
-    self.fontCover = self.comp:GetChild("frontCover")
-    self.frontCoverPos = self.fontCover.position
+    self.frontCover = self.comp:GetChild("frontCover")
+    self.frontCoverPos = LuaClass.Vector2(self.frontCover.position.x, self.frontCover.position.y)
 
     ---@type FairyGUI.GComponent
     self.backCover = self.comp:GetChild("backCover")
-    self.backCoverPos = self.backCover.position
+    self.backCoverPos = LuaClass.Vector2(self.backCover.position.x, self.backCover.position.y)
 
     self.objects = { obj1, obj2 }
     self.objectIndice = { -1, -1, -1, -1 }
@@ -64,6 +64,16 @@ function BookView:ctor(gameObject, comp)
     self:setUpHotspot(self.comp:GetChild("hotspot_bl"), Corner.BL)
     self:setUpHotspot(self.comp:GetChild("hotspot_tr"), Corner.TR)
     self:setUpHotspot(self.comp:GetChild("hotspot_br"), Corner.BR)
+end
+
+function BookView:initPage(value)
+    if self.currentPage ~= value then
+        LuaClass.GuiGTween.Kill(self.comp, true)
+        self.currentPage = value
+        self.coverStatus = CoverStatus.Hidden
+
+        self:renderPages()
+    end
 end
 
 function BookView:setSoftShadowResource(res)
@@ -236,7 +246,7 @@ function BookView:onTurnComplete(tweener)
     self.turningTarget = -1
 
     self:renderPages()
-    self.onTurnComplete()
+    self.onTurnCompleteBook()
 end
 
 function BookView:playTurnEffect()
@@ -256,7 +266,7 @@ end
 function BookView:playCoverEffect()
     local amount = LuaClass.Mathf.Clamp01(self.turningAmount)
     local ratio, isLeft
-    local turningObj = (self.coverTurningOp == CoverTurningOp.ShowFront or self.coverTurningOp == CoverTurningOp.HideFront) and self.fontCover or self.backCover
+    local turningObj = (self.coverTurningOp == CoverTurningOp.ShowFront or self.coverTurningOp == CoverTurningOp.HideFront) and self.frontCover or self.backCover
     local mesh = self:getHardMesh(turningObj)
     if amount < 0.5 then
         ratio = 1 - amount * 2
@@ -297,15 +307,15 @@ function BookView:playHardEffect()
     if amount < 0.5 then
         ratio = 1 - amount * 2
         isLeft = self.turningTarget < self.currentPage
-        turningObj = self.objects[2]
+        turningObj = self.objects[3]
         mesh = self:getHardMesh(turningObj)
-        self:etHardMesh(self.objects[3]).points:Clear()
+        self:etHardMesh(self.objects[4]).points:Clear()
     else
         ratio = (amount - 0.5) * 2
         sLeft = self.turningTarget > self.currentPage
-        turningObj = self.objects[3]
+        turningObj = self.objects[4]
         mesh = self:getHardMesh(turningObj)
-        self:etHardMesh(self.objects[2].points:Clear())
+        self:etHardMesh(self.objects[3].points:Clear())
     end
     mesh.points:Clear()
     mesh.texcoords:Clear()
@@ -341,10 +351,363 @@ function BookView:flipPoint(pt, w, h)
     end
 end
 
+function BookView:playSoftEffect()
+    local turningObj1 = self.objects[3]
+    local turningObj2 = self.objects[4]
+    local mesh1 = self:getSoftMesh(turningObj1)
+    local mesh2 = self:getSoftMesh(turningObj2)
+    --
+    --*               a
+    --*              /  \
+    --* f(0,0)------/    b--g(w,0)
+    --* |          /     /  |
+    --* |         /     /   |
+    --* |        c     /    |
+    --* |         \   /     |
+    --* |          \ /      |
+    --* e(0,h)-----d--------h(w,h)
+    --
+    local pa, pb, pc, pd, pe, pf, pg, ph, k, angle
+    local threePoints = false
+    pc = self.dragPoint
+    pe = LuaClass.Vector2(0, self.pageHeight)
+    pf = LuaClass.Vector2.zero
+    pg = LuaClass.Vector2(self.pageWidth, 0)
+    ph = LuaClass.Vector2(self.pageWidth, self.pageHeight)
 
---todo PlaySoftEffect
+    self:flipPoint(pc, self.pageWidth * 2, self.pageHeight)
 
---todo RenderCovers
+    pc.x = pc.x - self.pageWidth
+    if pc.x > self.pageWidth then
+        return
+    end
+
+    k = (ph.y - pc.y) / (ph.x - pc.x)
+    local k2 = 1 + k * k
+    local min = ph.x - self.pageWidth * 2 / k2
+    if pc.x < min then
+        pc.x = min
+        if pc.x >= self.pageWidth then
+            return
+        end
+        pc.y = ph.y - k * (ph.x - pc.x)
+    end
+
+    min = ph.x - (self.pageWidth + self.pageHeight * k) * 2 / k2
+    if pc.x < min then
+        pc.x = min
+        if pc.x >= self.pageWidth then
+            return
+        end
+        pc.y = ph.y - k * (ph.x - pc.x)
+    end
+
+    angle = LuaClass.Mathf.Atan(k) * LuaClass.Mathf.Rad2Deg
+    pd = LuaClass.Vector2(self.pageWidth - k2 * (ph.x - pc.x) / 2, self.pageHeight)
+    pb = LuaClass.Vector2(pd.x + self.pageHeight * k, 0)
+    pa = LuaClass.Vector2()
+
+    if pb.x > self.pageWidth then
+        pb.x = self.pageWidth
+        pa = LuaClass.Vector2(self.pageWidth, self.pageHeight - (self.pageWidth - pd.x) / k)
+        threePoints = true
+    end
+    self:flipPoint(pa, self.pageWidth, self.pageHeight)
+    self:flipPoint(pb, self.pageWidth, self.pageHeight)
+    self:flipPoint(pc, self.pageWidth, self.pageHeight)
+    self:flipPoint(pd, self.pageWidth, self.pageHeight)
+    if self.draggingCorner == Corner.BL or self.draggingCorner == Corner == Corner.TL then
+        angle = -angle
+    end
+
+    if self.draggingCorner == Corner.BR then
+        turningObj1:SetPivot(0, 0, true)
+        turningObj1.position = LuaClass.Vector2(self.pageWidth, 0)
+
+        turningObj2:SetPivot(0, 1, true)
+        turningObj2.position = LuaClass.Vector2(self.pageWidth + pc.x, pc.y)
+        turningObj2.rotation = 2 * angle
+
+        if isValid(self.softShadow) then
+            self.softShadow:SetPivot(1, (self.softShadow.height - 30) / self.softShadow.height, true)
+            self.softShadow.position = LuaClass.Vector2(LuaClass.Vector2.Distance(pc, pd), self.pageHeight)
+            self.softShadow.rotation = -angle
+            if self.softShadow.x > self.pageWidth - 20 then
+                self.softShadow.alpha = (self.pageWidth - self.softShadow.x) / 20
+            else
+                self.softShadow.alpha = 1
+
+            end
+        end
+
+        mesh1.points:Clear()
+        mesh1:Add(pe)
+        mesh1:Add(pf)
+        mesh1:Add(pb)
+        if threePoints then
+            mesh1:Add(pa)
+        end
+        mesh1:Add(pd)
+
+        mesh2.points:Clear()
+        mesh2:Add(LuaClass.Vector2(LuaClass.Vector2.Distance(pc, pd), self.pageHeight))
+        mesh2:Add(LuaClass.Vector2(0, self.pageHeight))
+        if threePoints then
+            mesh2:Add(LuaClass.Vector2(0, self.pageHeight - LuaClass.Vector2.Distance(pc, pa)))
+        else
+            mesh2:Add(LuaClass.Vector2(0, 0))
+            mesh2:Add(LuaClass.Vector2(LuaClass.Vector2.Distance(pg, pb), 0))
+        end
+    elseif self.draggingCorner == Corner.TR then
+        turningObj1:SetPivot(0, 0, true)
+        turningObj1.position = LuaClass.Vector2(self.pageWidth, 0)
+
+        turningObj2:SetPivot(0, 0, true)
+        turningObj2.position = LuaClass.Vector2(self.pageWidth + pc.x, pc.y)
+        turningObj2.rotation = -2 * angle
+
+        if isValid(self.softShadow) then
+            self.softShadow:SetPivot(1, 30 / self.softShadow.height, true)
+            self.softShadow.position = LuaClass.Vector2(LuaClass.Vector2.Distance(pc, pd), 0)
+            self.softShadow.rotation = angle
+            if self.softShadow.x > self.pageWidth - 20 then
+                self.softShadow.alpha = (self.pageWidth - self.softShadow.x) / 20
+            else
+                self.softShadow.alpha = 1
+
+            end
+        end
+
+        mesh1.points:Clear()
+        mesh1:Add(pe)
+        mesh1:Add(pf)
+        mesh1:Add(pd)
+        if threePoints then
+            mesh1:Add(pa)
+        end
+        mesh1:Add(pb)
+
+        mesh2.points:Clear()
+        if threePoints then
+            mesh2:Add(LuaClass.Vector2(0, LuaClass.Vector2.Distance(pc, pa)))
+        else
+            mesh2:Add(LuaClass.Vector2(LuaClass.Vector2.Distance(pb, ph), self.pageHeight))
+            mesh2:Add(LuaClass.Vector2(0, self.pageHeight))
+        end
+        mesh2.Add(LuaClass.Vector2(0, 0))
+        mesh2.Add(LuaClass.Vector2(LuaClass.Vector2.Distance(pc, pd), 0))
+    elseif self.draggingCorner == Corner.BL then
+        turningObj1:SetPivot(0, 0, true)
+        turningObj1.position = LuaClass.Vector2.zero
+
+        turningObj2:SetPivot(1, 1, true)
+        turningObj2.position = pc
+        turningObj2.rotation = 2 * angle
+
+        if isValid(self.softShadow) then
+            self.softShadow:SetPivot(1, 30 / self.softShadow.height, true)
+            self.softShadow.position = LuaClass.Vector2(self.pageWidth - LuaClass.Vector2.Distance(pc, pd), self.pageHeight)
+            self.softShadow.rotation = 180 - angle
+            if self.softShadow.x < 20 then
+                self.softShadow.alpha = (self.softShadow.x - 20) / 20
+            else
+                self.softShadow.alpha = 1
+
+            end
+        end
+
+        mesh1.points:Clear()
+        mesh1:Add(pb)
+        mesh1:Add(pg)
+        mesh1:Add(ph)
+        mesh1:Add(pd)
+        if threePoints then
+            mesh1:Add(pa)
+        end
+
+        mesh2.points:Clear()
+        if threePoints then
+            mesh2:Add(LuaClass.Vector2(self.pageWidth, self.pageHeight - LuaClass.Vector2.Distance(pc, pa)))
+        else
+            mesh2:Add(LuaClass.Vector2(self.pageWidth - LuaClass.Vector2.Distance(pf, pb), 0))
+            mesh2:Add(LuaClass.Vector2(self.pageWidth, 0))
+        end
+        mesh2.Add(LuaClass.Vector2(self.pageWidth, self.pageHeight))
+        mesh2.Add(LuaClass.Vector2(self.pageWidth - LuaClass.Vector2.Distance(pc, pd), self.pageHeight))
+    elseif self.draggingCorner == Corner.TL then
+        turningObj1:SetPivot(0, 0, true)
+        turningObj1.position = LuaClass.Vector2.zero
+
+        turningObj2:SetPivot(1, 0, true)
+        turningObj2.position = pc
+        turningObj2.rotation = -2 * angle
+
+        if isValid(self.softShadow) then
+            self.softShadow:SetPivot(1, (self.softShadow.height - 30) / self.softShadow.height, true)
+            self.softShadow.position = LuaClass.Vector2(self.pageWidth - LuaClass.Vector2.Distance(pc, pd), 0)
+            self.softShadow.rotation = 180 + angle
+            if self.softShadow.x < 20 then
+                self.softShadow.alpha = (self.softShadow.x - 20) / 20
+            else
+                self.softShadow.alpha = 1
+
+            end
+        end
+
+        mesh1.points:Clear()
+        mesh1:Add(pd)
+        mesh1:Add(pg)
+        mesh1:Add(ph)
+        mesh1:Add(pb)
+        if threePoints then
+            mesh1:Add(pa)
+        end
+
+        mesh2.points:Clear()
+        mesh2:Add(LuaClass.Vector2(self.pageHeight - LuaClass.Vector2.Distance(pc, pd), 0))
+        mesh2:Add(LuaClass.Vector2(self.pageWidth, 0))
+        if threePoints then
+            mesh2:Add(LuaClass.Vector2(self.pageWidth, LuaClass.Vector2.Distance(pc, pa)))
+        else
+            mesh2:Add(LuaClass.Vector2(self.pageWidth, self.pageHeight))
+            mesh2:Add(LuaClass.Vector2(self.pageWidth - LuaClass.Vector2.Distance(pe, pb), self.pageHeight))
+        end
+    end
+end
+
+
+function BookView:renderPages()
+    self:renderCovers()
+    if self.softShadow then
+        self.softShadow:RemoveFromParent()
+    end
+
+    local curPage = self.currentPage
+    if curPage % 2 == 0 then
+        curPage = curPage - 1
+    end
+    local leftPage, rightPage, turningPageBack, turningPageFront
+    leftPage = curPage
+    rightPage = leftPage < self.pageCount - 1 and (leftPage + 1) or -1
+    if self.turningTarget ~= -1 then
+        local tt = self.turningTarget
+        if tt % 2 == 0 then
+            tt = tt - 1
+        end
+        if tt == curPage then
+            self.currentPage = self.turningTarget
+            turningPageBack = -1
+            turningPageFront = -1
+        elseif tt > leftPage then
+            turningPageBack = rightPage
+            turningPageFront = tt
+            rightPage = tt < self.pageCount - 1 and (tt + 1) or -1
+        else
+            turningPageBack = tt > 0 and (tt + 1) or 0
+            turningPageFront = leftPage
+            rightPage = tt > 0 and tt or -1
+        end
+    else
+        turningPageBack = -1
+        turningPageFront = -1
+    end
+
+    self.objectNewIndice[1] = leftPage
+    self.objectNewIndice[2] = rightPage
+    self.objectNewIndice[3] = turningPageBack
+    self.objectNewIndice[4] = turningPageFront
+
+    for i = 1, 4 do
+        local pageIndex = self.objectNewIndice[i]
+        if pageIndex ~= -1 then
+            for j = 1, 4 do
+                local pageIndex2 = self.objectIndice[j]
+                if pageIndex2 == pageIndex then
+                    if j ~= i then
+                        self.objectIndice[j] = self.objectIndice[i]
+                        self.objectIndice[i] = pageIndex
+
+                        local tmp = self.objects[j]
+                        self.objects[j] = self.objects[i]
+                        self.objects[i] = tmp
+                    end
+                    break
+                end
+            end
+        end
+    end
+
+    for i = 1, 4 do
+        local obj = self.objects[i]
+        local oldIndex = self.objectIndice[i]
+        local index = self.objectNewIndice[i]
+        self.objectIndice[i] = index
+        if index == -1 then
+            if isValid(obj) then
+                obj:RemoveFromParent()
+            end
+        elseif oldIndex ~= index then
+            if not isValid(obj) then
+                obj = LuaClass.GuiUIPackage.CreateObjectFromURL(self.pageResource)
+                obj.displayObject.home = self.comp.displayObject.cachedTransform
+                self.objects[i] = obj
+            end
+        else
+            if not isValid(obj.parent) then
+                self.pagesContainer:AddChild(obj)
+                self.pageRenderer(index, obj)
+            else
+                self.pagesContainer:AddChild(obj)
+            end
+        end
+
+        if isValid(obj) and isValid(obj.parent) then
+            local c1 = obj:GetController("side")
+            if isValid(c1) then
+                if index == 0 then
+                    c1.selectedPage = "first"
+                elseif index == self.pageCount - 1 then
+                    c1.selectedPage = "last"
+                else
+                    c1.selectedPage = (index % 2 == 0) and "right" or "left"
+                end
+            end
+            if i == 0 or i == 1 then
+                self:setPageNormal(obj, i == 0)
+            elseif self.paper == Paper.Soft then
+                self:setPageSoft(obj, i == 2)
+            else
+                self:setPageHard(obj, i == 2)
+            end
+        end
+    end
+end
+
+function BookView:renderCovers()
+    if self.frontCover then
+        if self.coverTurningOp == CoverTurningOp.ShowFront or self.coverTurningOp == CoverTurningOp.HideFront then
+            self:setPageHard(self.frontCover, true)
+            self:setCoverStatus(self.frontCover, CoverType.Front, self.coverTurningOp == CoverTurningOp.HideFront)
+        else
+            if self.frontCover.displayObject.cacheAsBitmap then
+                self:setCoverNormal(self.frontCover, CoverType.Front)
+            end
+            self:setCoverStatus(self.frontCover, CoverType.Front, self.coverStatus == CoverStatus.ShowingFront)
+        end
+    end
+
+    if self.backCover then
+        if self.coverTurningOp == CoverTurningOp.ShowBack or self.coverTurningOp == CoverTurningOp.HideBack then
+            self:setPageHard(self.backCover, true)
+            self:setCoverStatus(self.backCover, CoverType.Back, self.coverTurningOp == CoverTurningOp.HideBack)
+        else
+            if self.backCover.displayObject.cacheAsBitmap then
+                self:setCoverNormal(self.backCover, CoverType.Back)
+            end
+            self:setCoverStatus(self.backCover, CoverType.Back, self.coverStatus == CoverStatus.ShowingBack)
+        end
+    end
+end
 
 function BookView:setUpHotspot(obj, corner)
     if not isValid(obj) then
@@ -472,8 +835,8 @@ function BookView:updateDragPosition(pos)
 end
 
 function BookView:getCornerPosition(corner, isCover)
-    local w = isCover and self.fontCover.width or self.pageWidth
-    local h = isCover and self.fontCover.height or self.pageHeight
+    local w = isCover and self.frontCover.width or self.pageWidth
+    local h = isCover and self.frontCover.height or self.pageHeight
     local pt
     if corner == Corner.BL then
         pt = LuaClass.Vector2(0, h)
@@ -549,7 +912,7 @@ function BookView:touchEnd()
             target = self:getCornerPosition(self.draggingCorner, self.coverTurningOp ~= CoverTurningOp.None)
         end
 
-        local duration = LuaClass.Mathf.Max(0.25,math.abs(target.x - self.dragPoint.x) / (self.pageWidth * 2) * 0.5)
+        local duration = LuaClass.Mathf.Max(0.25, math.abs(target.x - self.dragPoint.x) / (self.pageWidth * 2) * 0.5)
 
         LuaClass.GuiGTween.To(self.dragPoint, target, duration):SetTarget(self.comp):SetUserData(suc):OnUpdate(handler(self, self.onTurnUpdate)):OnComplete(handler(self, self.onTurnComplete))
     end

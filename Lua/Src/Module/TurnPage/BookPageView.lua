@@ -13,7 +13,7 @@ function BookPageView:ctor(gameObject, comp)
     self.style = comp:GetController("style")
     self.pageNumber = comp:GetChild("pn")
     self.modelWrapper = LuaClass.GuiGoWrapper()
-    comp:GetChild("model"):SetNativeObject(modelWrapper)
+    comp:GetChild("model"):SetNativeObject(self.modelWrapper)
 end
 
 function BookPageView:render(pageIndex)

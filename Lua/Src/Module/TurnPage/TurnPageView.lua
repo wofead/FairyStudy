@@ -21,9 +21,9 @@ function TurnPageView:init()
     book:setSoftShadowResource("ui://TurnPage/shadow_soft")
     book.pageRenderer = handler(self, self.renderPage)
     book.pageCount = 20
-    book.currentPage = 0
+    book:initPage(0)
     book:showCover(0, false)
-    book.onTurnComplete = handler(self, self.onTurnComplete)
+    book.onTurnCompleteBook = handler(self, self.onTurnComplete)
 
     LuaClass.GuiGearBase.disableAllTweenEffect = true
     self.bookPosContr = self.view:GetController("bookPos")
@@ -54,9 +54,14 @@ function TurnPageView:onTurnComplete()
     end
 end
 
----@param page BookPageView
+---@param page FairyGUI.GComponent
 function TurnPageView:renderPage(index, page)
-    page:render(index)
+    ---@type BookPageView
+    local pageView = page.displayObject.gameObject:getLuaComponent(LuaClass.BookPageView)
+    if not pageView then
+        pageView = page.displayObject.gameObject:addLuaComponent(LuaClass.BookPageView, page)
+    end
+    pageView:render(index)
 end
 
 function TurnPageView:onEnter()

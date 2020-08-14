@@ -8,12 +8,12 @@ local TurnPageModule = class("TurnPageModule", super)
 
 function TurnPageModule:ctor()
     super.ctor(self)
-    ---@type TurnCardView
+    ---@type TurnPageView
     self.view = nil
 end
 
 function TurnPageModule:showView()
-    self.view = App.uiManager:showView(LuaClass.TurnCardView)
+    self.view = App.uiManager:showView(LuaClass.TurnPageView)
 end
 
 function TurnPageModule:closeView()
