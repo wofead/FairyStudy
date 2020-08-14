@@ -21,7 +21,7 @@ namespace XLua.CSObjectWrap
         {
 			ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
 			System.Type type = typeof(FairyGUI.GComponent);
-			Utils.BeginObjectRegister(type, L, translator, 0, 34, 18, 11);
+			Utils.BeginObjectRegister(type, L, translator, 0, 35, 19, 12);
 			
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "Dispose", _m_Dispose);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "InvalidateBatchingState", _m_InvalidateBatchingState);
@@ -57,6 +57,7 @@ namespace XLua.CSObjectWrap
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "ConstructFromResource", _m_ConstructFromResource);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "ConstructFromXML", _m_ConstructFromXML);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "Setup_AfterAdd", _m_Setup_AfterAdd);
+			Utils.RegisterFunc(L, Utils.METHOD_IDX, "SetLuaTable", _m_SetLuaTable);
 			
 			
 			Utils.RegisterFunc(L, Utils.GETTER_IDX, "rootContainer", _g_get_rootContainer);
@@ -77,6 +78,7 @@ namespace XLua.CSObjectWrap
             Utils.RegisterFunc(L, Utils.GETTER_IDX, "baseUserData", _g_get_baseUserData);
             Utils.RegisterFunc(L, Utils.GETTER_IDX, "viewWidth", _g_get_viewWidth);
             Utils.RegisterFunc(L, Utils.GETTER_IDX, "viewHeight", _g_get_viewHeight);
+            Utils.RegisterFunc(L, Utils.GETTER_IDX, "luaTable", _g_get_luaTable);
             
 			Utils.RegisterFunc(L, Utils.SETTER_IDX, "fairyBatching", _s_set_fairyBatching);
             Utils.RegisterFunc(L, Utils.SETTER_IDX, "opaque", _s_set_opaque);
@@ -89,6 +91,7 @@ namespace XLua.CSObjectWrap
             Utils.RegisterFunc(L, Utils.SETTER_IDX, "reversedMask", _s_set_reversedMask);
             Utils.RegisterFunc(L, Utils.SETTER_IDX, "viewWidth", _s_set_viewWidth);
             Utils.RegisterFunc(L, Utils.SETTER_IDX, "viewHeight", _s_set_viewHeight);
+            Utils.RegisterFunc(L, Utils.SETTER_IDX, "luaTable", _s_set_luaTable);
             
 			
 			Utils.EndObjectRegister(type, L, translator, null, null,
@@ -1153,6 +1156,34 @@ namespace XLua.CSObjectWrap
             
         }
         
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _m_SetLuaTable(RealStatePtr L)
+        {
+		    try {
+            
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+            
+            
+                FairyGUI.GComponent gen_to_be_invoked = (FairyGUI.GComponent)translator.FastGetCSObj(L, 1);
+            
+            
+                
+                {
+                    XLua.LuaTable _luaTable = (XLua.LuaTable)translator.GetObject(L, 2, typeof(XLua.LuaTable));
+                    
+                    gen_to_be_invoked.SetLuaTable( _luaTable );
+                    
+                    
+                    
+                    return 0;
+                }
+                
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
+            
+        }
+        
         
         
         
@@ -1408,6 +1439,20 @@ namespace XLua.CSObjectWrap
             return 1;
         }
         
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _g_get_luaTable(RealStatePtr L)
+        {
+		    try {
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+			
+                FairyGUI.GComponent gen_to_be_invoked = (FairyGUI.GComponent)translator.FastGetCSObj(L, 1);
+                translator.Push(L, gen_to_be_invoked.luaTable);
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
+            return 1;
+        }
+        
         
         
         [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
@@ -1571,6 +1616,21 @@ namespace XLua.CSObjectWrap
 			
                 FairyGUI.GComponent gen_to_be_invoked = (FairyGUI.GComponent)translator.FastGetCSObj(L, 1);
                 gen_to_be_invoked.viewHeight = (float)LuaAPI.lua_tonumber(L, 2);
+            
+            } catch(System.Exception gen_e) {
+                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
+            }
+            return 0;
+        }
+        
+        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
+        static int _s_set_luaTable(RealStatePtr L)
+        {
+		    try {
+                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
+			
+                FairyGUI.GComponent gen_to_be_invoked = (FairyGUI.GComponent)translator.FastGetCSObj(L, 1);
+                gen_to_be_invoked.luaTable = (XLua.LuaTable)translator.GetObject(L, 2, typeof(XLua.LuaTable));
             
             } catch(System.Exception gen_e) {
                 return LuaAPI.luaL_error(L, "c# exception:" + gen_e);

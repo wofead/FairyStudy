@@ -342,6 +342,17 @@ namespace FairyGUI
         /// </summary>
         /// <param name="callback"></param>
         /// <returns></returns>
+        public GTweener OnComplete(GTweenCallback1 callback)
+        {
+            _onComplete1 = callback;
+            return this;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="callback"></param>
+        /// <returns></returns>
 #if FAIRYGUI_TOLUA
         [NoToLua]
 #endif
@@ -360,17 +371,6 @@ namespace FairyGUI
         public GTweener OnStart(GTweenCallback1 callback)
         {
             _onStart1 = callback;
-            return this;
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="callback"></param>
-        /// <returns></returns>
-        public GTweener OnComplete(GTweenCallback1 callback)
-        {
-            _onComplete1 = callback;
             return this;
         }
 

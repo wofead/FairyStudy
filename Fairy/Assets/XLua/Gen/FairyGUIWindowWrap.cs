@@ -21,7 +21,7 @@ namespace XLua.CSObjectWrap
         {
 			ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
 			System.Type type = typeof(FairyGUI.Window);
-			Utils.BeginObjectRegister(type, L, translator, 0, 13, 11, 6);
+			Utils.BeginObjectRegister(type, L, translator, 0, 12, 11, 6);
 			
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "AddUISource", _m_AddUISource);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "Show", _m_Show);
@@ -34,7 +34,6 @@ namespace XLua.CSObjectWrap
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "ShowModalWait", _m_ShowModalWait);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "CloseModalWait", _m_CloseModalWait);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "Init", _m_Init);
-			Utils.RegisterFunc(L, Utils.METHOD_IDX, "SetLuaTable", _m_SetLuaTable);
 			Utils.RegisterFunc(L, Utils.METHOD_IDX, "Dispose", _m_Dispose);
 			
 			
@@ -420,34 +419,6 @@ namespace XLua.CSObjectWrap
                 {
                     
                     gen_to_be_invoked.Init(  );
-                    
-                    
-                    
-                    return 0;
-                }
-                
-            } catch(System.Exception gen_e) {
-                return LuaAPI.luaL_error(L, "c# exception:" + gen_e);
-            }
-            
-        }
-        
-        [MonoPInvokeCallbackAttribute(typeof(LuaCSFunction))]
-        static int _m_SetLuaTable(RealStatePtr L)
-        {
-		    try {
-            
-                ObjectTranslator translator = ObjectTranslatorPool.Instance.Find(L);
-            
-            
-                FairyGUI.Window gen_to_be_invoked = (FairyGUI.Window)translator.FastGetCSObj(L, 1);
-            
-            
-                
-                {
-                    XLua.LuaTable _luaTable = (XLua.LuaTable)translator.GetObject(L, 2, typeof(XLua.LuaTable));
-                    
-                    gen_to_be_invoked.SetLuaTable( _luaTable );
                     
                     
                     
