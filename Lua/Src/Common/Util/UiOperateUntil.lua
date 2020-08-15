@@ -52,11 +52,11 @@ function UiOperateUntil.registerUIEvent(target, eventType, funCall)
             target[eventType]:Set(
                     function(context)
                         xpcall(funCall, function(msg)
-                            error(string.format("UIEvent %s的%s事件回调方法失败", target.name, eventType) .. "\n" .. debug.traceback())
+                            print(string.format("UIEvent %s的%s事件回调方法失败", target.name, eventType) .. "\n" .. debug.traceback())
                         end, context)
                     end)
         else
-            error(string.format("UIEvent %s的%s事件没有", target.name, eventType))
+            print(string.format("UIEvent %s的%s事件没有", target.name, eventType))
         end
     end
 end

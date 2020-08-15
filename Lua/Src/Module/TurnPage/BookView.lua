@@ -71,7 +71,7 @@ function BookView:initPage(value)
         LuaClass.GuiGTween.Kill(self.comp, true)
         self.currentPage = value
         self.coverStatus = CoverStatus.Hidden
-
+        self.paper = Paper.Soft
         self:renderPages()
     end
 end
@@ -208,15 +208,15 @@ function BookView:startTween()
     else
         target = self:getCornerPosition(self.draggingCorner - 2, self.coverTurningOp ~= CoverTurningOp.None)
     end
-    if isValid(self.turningPath) then
+    if not isValid(self.turningPath) then
         self.turningPath = LuaClass.GuiGPath()
     end
+    local turningPath = self.turningPath
     local mid = LuaClass.Vector2(source.x + (target.x - source.x) / 2, target.y - 50)
-    local test = LuaClass.GuiGPathPoint(LuaClass.Vector3(source.x, source.y, 0))
-    --LuaClass.Vector3(source.x, source.y, 0)
-    --LuaClass.Vector3(mid.x, mid.y, 0)
-    --LuaClass.Vector3(target.x, target.y, 0)
-    self.turningPath:Create({LuaClass.GuiGPathPoint(LuaClass.Vector3(source.x, source.y, 0)), LuaClass.GuiGPathPoint(LuaClass.Vector3(mid.x, mid.y, 0)), LuaClass.GuiGPathPoint(LuaClass.Vector3(target.x, target.y, 0))})
+    local pp1 = LuaClass.GuiGPathPoint(LuaClass.Vector3(source.x, source.y, 0))
+    local pp2 = LuaClass.GuiGPathPoint(LuaClass.Vector3(mid.x, mid.y, 0))
+    local pp3 = LuaClass.GuiGPathPoint(LuaClass.Vector3(target.x, target.y, 0))
+    self.turningPath:Create(pp1, pp2, pp3)
     LuaClass.GuiGTween.To(source, target, 0.5):SetUserData(true):SetTarget(self.comp)
             :SetPath(self.turningPath)
             :OnUpdate(handler(self, self.onTurnUpdate)):OnComplete(handler(self, self.onTurnComplete))
@@ -234,10 +234,10 @@ end
 function BookView:onTurnComplete(tweener)
     local suc = tweener.userData
     self.draggingCorner = Corner.INVALID
-    if suc or self.turningTarget ~= -1 then
+    if suc and self.turningTarget ~= -1 then
         self.currentPage = self.turningTarget
     end
-    if suc or self.coverTurningOp ~= CoverTurningOp.None then
+    if suc and self.coverTurningOp ~= CoverTurningOp.None then
         if self.coverTurningOp == CoverTurningOp.ShowFront then
             self.coverStatus = CoverStatus.ShowingFront
         elseif self.coverTurningOp == CoverTurningOp.ShowBack then
@@ -426,15 +426,14 @@ function BookView:playSoftEffect()
 
     if self.draggingCorner == Corner.BR then
         turningObj1:SetPivot(0, 0, true)
-        turningObj1.position = LuaClass.Vector2(self.pageWidth, 0)
-
+        turningObj1.position = LuaClass.Vector3(self.pageWidth, 0, 0)
         turningObj2:SetPivot(0, 1, true)
-        turningObj2.position = LuaClass.Vector2(self.pageWidth + pc.x, pc.y)
+        turningObj2.position = LuaClass.Vector3(self.pageWidth + pc.x, pc.y, 0)
         turningObj2.rotation = 2 * angle
 
         if isValid(self.softShadow) then
             self.softShadow:SetPivot(1, (self.softShadow.height - 30) / self.softShadow.height, true)
-            self.softShadow.position = LuaClass.Vector2(LuaClass.Vector2.Distance(pc, pd), self.pageHeight)
+            self.softShadow.position = LuaClass.Vector3(LuaClass.Vector2.Distance(pc, pd), self.pageHeight, 0)
             self.softShadow.rotation = -angle
             if self.softShadow.x > self.pageWidth - 20 then
                 self.softShadow.alpha = (self.pageWidth - self.softShadow.x) / 20
@@ -464,15 +463,15 @@ function BookView:playSoftEffect()
         end
     elseif self.draggingCorner == Corner.TR then
         turningObj1:SetPivot(0, 0, true)
-        turningObj1.position = LuaClass.Vector2(self.pageWidth, 0)
+        turningObj1.position = LuaClass.Vector3(self.pageWidth, 0, 0)
 
         turningObj2:SetPivot(0, 0, true)
-        turningObj2.position = LuaClass.Vector2(self.pageWidth + pc.x, pc.y)
+        turningObj2.position = LuaClass.Vector3(self.pageWidth + pc.x, pc.y, 0)
         turningObj2.rotation = -2 * angle
 
         if isValid(self.softShadow) then
             self.softShadow:SetPivot(1, 30 / self.softShadow.height, true)
-            self.softShadow.position = LuaClass.Vector2(LuaClass.Vector2.Distance(pc, pd), 0)
+            self.softShadow.position = LuaClass.Vector3(LuaClass.Vector2.Distance(pc, pd), 0, 0)
             self.softShadow.rotation = angle
             if self.softShadow.x > self.pageWidth - 20 then
                 self.softShadow.alpha = (self.pageWidth - self.softShadow.x) / 20
@@ -498,19 +497,19 @@ function BookView:playSoftEffect()
             mesh2:Add(LuaClass.Vector2(LuaClass.Vector2.Distance(pb, ph), self.pageHeight))
             mesh2:Add(LuaClass.Vector2(0, self.pageHeight))
         end
-        mesh2.Add(LuaClass.Vector2(0, 0))
-        mesh2.Add(LuaClass.Vector2(LuaClass.Vector2.Distance(pc, pd), 0))
+        mesh2:Add(LuaClass.Vector2(0, 0))
+        mesh2:Add(LuaClass.Vector2(LuaClass.Vector2.Distance(pc, pd), 0))
     elseif self.draggingCorner == Corner.BL then
         turningObj1:SetPivot(0, 0, true)
-        turningObj1.position = LuaClass.Vector2.zero
+        turningObj1.position = LuaClass.Vector3.zero
 
         turningObj2:SetPivot(1, 1, true)
-        turningObj2.position = pc
+        turningObj2.position = LuaClass.Vector3(pc.x, pc.y, 0)
         turningObj2.rotation = 2 * angle
 
         if isValid(self.softShadow) then
             self.softShadow:SetPivot(1, 30 / self.softShadow.height, true)
-            self.softShadow.position = LuaClass.Vector2(self.pageWidth - LuaClass.Vector2.Distance(pc, pd), self.pageHeight)
+            self.softShadow.position = LuaClass.Vector3(self.pageWidth - LuaClass.Vector2.Distance(pc, pd), self.pageHeight, 0)
             self.softShadow.rotation = 180 - angle
             if self.softShadow.x < 20 then
                 self.softShadow.alpha = (self.softShadow.x - 20) / 20
@@ -536,19 +535,19 @@ function BookView:playSoftEffect()
             mesh2:Add(LuaClass.Vector2(self.pageWidth - LuaClass.Vector2.Distance(pf, pb), 0))
             mesh2:Add(LuaClass.Vector2(self.pageWidth, 0))
         end
-        mesh2.Add(LuaClass.Vector2(self.pageWidth, self.pageHeight))
-        mesh2.Add(LuaClass.Vector2(self.pageWidth - LuaClass.Vector2.Distance(pc, pd), self.pageHeight))
+        mesh2:Add(LuaClass.Vector2(self.pageWidth, self.pageHeight))
+        mesh2:Add(LuaClass.Vector2(self.pageWidth - LuaClass.Vector2.Distance(pc, pd), self.pageHeight))
     elseif self.draggingCorner == Corner.TL then
         turningObj1:SetPivot(0, 0, true)
-        turningObj1.position = LuaClass.Vector2.zero
+        turningObj1.position = LuaClass.Vector3.zero
 
         turningObj2:SetPivot(1, 0, true)
-        turningObj2.position = pc
+        turningObj2.position = LuaClass.Vector3(pc.x, pc.y, 0)
         turningObj2.rotation = -2 * angle
 
         if isValid(self.softShadow) then
             self.softShadow:SetPivot(1, (self.softShadow.height - 30) / self.softShadow.height, true)
-            self.softShadow.position = LuaClass.Vector2(self.pageWidth - LuaClass.Vector2.Distance(pc, pd), 0)
+            self.softShadow.position = LuaClass.Vector3(self.pageWidth - LuaClass.Vector2.Distance(pc, pd), 0, 0)
             self.softShadow.rotation = 180 + angle
             if self.softShadow.x < 20 then
                 self.softShadow.alpha = (self.softShadow.x - 20) / 20
@@ -620,7 +619,6 @@ function BookView:renderPages()
     self.objectNewIndice[3] = turningPageBack
     self.objectNewIndice[4] = turningPageFront
     local objectNewIndice = self.objectNewIndice
-    printJow("BookView")
     for i = 1, 4 do
         local pageIndex = self.objectNewIndice[i]
         if pageIndex ~= -1 then
@@ -656,6 +654,8 @@ function BookView:renderPages()
                 obj.displayObject.home = self.comp.displayObject.cachedTransform
                 self.objects[i] = obj
             end
+            self.pagesContainer:AddChild(obj)
+            self.pageRenderer(index, obj)
         else
             if not isValid(obj.parent) then
                 self.pagesContainer:AddChild(obj)
@@ -676,12 +676,12 @@ function BookView:renderPages()
                     c1.selectedPage = (index % 2 == 0) and "right" or "left"
                 end
             end
-            if i == 0 or i == 1 then
-                self:setPageNormal(obj, i == 0)
+            if i == 1 or i == 2 then
+                self:setPageNormal(obj, i == 1)
             elseif self.paper == Paper.Soft then
-                self:setPageSoft(obj, i == 2)
+                self:setPageSoft(obj, i == 3)
             else
-                self:setPageHard(obj, i == 2)
+                self:setPageHard(obj, i == 3)
             end
         end
     end
@@ -749,17 +749,18 @@ function BookView:setPageSoft(obj, front)
     local mask = front and self.mask1.displayObject or self.mask2.displayObject
     obj.mask = mask
 
+    ---@type FairyGUI.PolygonMesh
     local mesh = obj.displayObject.paintingGraphics:GetMeshFactoryPM()
     mesh.usePercentPositions = false
     mesh.points:Clear()
     mesh.texcoords:Clear()
-    obj.displayObject.paintingGraphics:SetMeshDirty()
+    mask.graphics:SetMeshDirty()
 
     if front then
-        mesh.Add(LuaClass.Vector2(0, self.pageHeight))
-        mesh.Add(LuaClass.Vector2.zero)
-        mesh.Add(LuaClass.Vector2(self.pageWidth, 0))
-        mesh.Add(LuaClass.Vector2(self.pageWidth, self.pageHeight))
+        mesh:Add(LuaClass.Vector2(0, self.pageHeight))
+        mesh:Add(LuaClass.Vector2.zero)
+        mesh:Add(LuaClass.Vector2(self.pageWidth, 0))
+        mesh:Add(LuaClass.Vector2(self.pageWidth, self.pageHeight))
     elseif isValid(self.softShadow) then
         obj:AddChild(self.softShadow)
     end
@@ -821,8 +822,11 @@ function BookView:getHardMesh(obj)
 end
 
 function BookView:getSoftMesh(obj)
-    obj.displayObject.graphics:SetMeshDirty()
-    return obj.displayObject.graphics:GetMeshFactoryPM()
+    if not isValid(obj) or not isValid(obj.mask) or not isValid(obj.mask.graphics) then
+        printJow("BookView", "errorfsd")
+    end
+    obj.mask.graphics:SetMeshDirty()
+    return obj.mask.graphics:GetMeshFactoryPM()
 end
 
 function BookView:updateDragPosition(pos)
@@ -876,7 +880,7 @@ function BookView:touchBegin(context)
     else
         if self.coverStatus == CoverStatus.ShowingFront then
             self.coverTurningOp = CoverTurningOp.HideFront
-        elseif self.objectNewIndice[2] ~= -1 then
+        elseif self.objectNewIndice[2] == -1 then
             if isValid(self.backCover) and self.coverStatus ~= CoverStatus.ShowingBack then
                 self.coverTurningOp = CoverTurningOp.ShowBack
             else

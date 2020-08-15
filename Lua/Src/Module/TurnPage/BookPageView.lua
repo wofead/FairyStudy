@@ -28,7 +28,7 @@ function BookPageView:render(pageIndex)
             go.transform.localPosition = LuaClass.Vector3(0, 0, 1000)
             go.transform.localScale = LuaClass.Vector3(120, 120, 120)
             go.transform.localEulerAngles = LuaClass.Vector3(0, 100, 0)
-            self.modelWrapper:setWrapTarget(go, true)
+            self.modelWrapper:SetWrapTarget(go, true)
         end
         self.style.selectedIndex = 2
     else

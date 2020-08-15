@@ -78,7 +78,7 @@ function TurnPageView:registerEvent()
         self.book:turnNext()
     end)
     registerEventFunc(ui.btnPrev, eventType.Click, function()
-        self.book:TurnPrevious()
+        self.book:turnPrevious()
     end)
 end
 
